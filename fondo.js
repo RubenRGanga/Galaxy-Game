@@ -5,11 +5,11 @@ class Fondo{ //background
         this.ctx = ctx;
         //Instancia una nueva imagen y establece la imagen con .src .
         this.img = new Image(); 
-        this.img.src = "assets/img/b1.jpg"
+        this.img.src = "assets/img/parallax-mountain-bg.png"
         this.x = 0 //situa la imagen en el eje X e Y
         this.y = 0
         
-        this.dx = 15 //Establece los pixeles que se desplaza dando la sensación de movimiento. 
+        this.dx = 0.05 //Establece los pixeles que se desplaza dando la sensación de movimiento. 
     }
 
     dibujar(){ //draw
