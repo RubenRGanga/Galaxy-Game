@@ -26,7 +26,7 @@ const Game = {
         
 
         this.loop = setInterval (() =>{  //interval
-            this.sumarFrames++;
+            this.sumarFrames++; //frameCounter
 
             this.moverTodo(); //moveAll
             this.pintarTodo();//drawAll
@@ -38,13 +38,16 @@ const Game = {
         this.fondo = new Fondo(this.canvas.width, this.canvas.height, this.ctx)
         this.sumarFrames = 0 //frameCounter 
         this.fondo1 = new Fondo1(this.canvas.width, this.canvas.height, this.ctx)
-        this.sumarFrames = 0
+        
         this.fondo2 = new Fondo2(this.canvas.width, this.canvas.height, this.ctx)
-        this.sumarFrames = 0
+        
         this.fondo3 = new Fondo3(this.canvas.width, this.canvas.height, this.ctx)
-        this.sumarFrames = 0
+        
         this.fondo4 = new Fondo4(this.canvas.width, this.canvas.height, this.ctx)
-        this.sumarFrames = 0
+        
+        this.jugador = new Jugador(this.canvas.width, this.canvas.height, this.ctx, this.keys)
+        
+      
     },
 
     moverTodo: function(){
@@ -54,15 +57,21 @@ const Game = {
         this.fondo2.movimiento()
         this.fondo3.movimiento()
         this.fondo4.movimiento()
+        this.jugador.movimiento()
+    
         
     },
     pintarTodo: function(){
         console.log("P")
+
         this.fondo.dibujar()
         this.fondo4.dibujar()
         this.fondo3.dibujar()
         this.fondo2.dibujar()
         this.fondo1.dibujar()
+        this.jugador.dibujar(this.sumarFrames)
+        
+        
         
         
         
