@@ -9,7 +9,7 @@ const Game = {
     },
 
     init: function () {
-        console.log("CARGADO")
+        //console.log("CARGADO")
         this.canvas = document.getElementById('canvas')
         this.ctx = canvas.getContext('2d');
         //https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext
@@ -20,7 +20,7 @@ const Game = {
     },
 
     start: function (){
-        console.log("INICIA")
+        // console.log("INICIA")
         
         this.reset()
         
@@ -51,7 +51,7 @@ const Game = {
     },
 
     moverTodo: function(){
-        console.log("M")
+        // console.log("M")
         this.fondo.movimiento()
         this.fondo1.movimiento()
         this.fondo2.movimiento()
@@ -62,14 +62,15 @@ const Game = {
         
     },
     pintarTodo: function(){
-        console.log("P")
+        // console.log("P")
 
         this.fondo.dibujar()
         this.fondo4.dibujar()
         this.fondo3.dibujar()
         this.fondo2.dibujar()
-        this.fondo1.dibujar()
         this.jugador.dibujar(this.sumarFrames)
+        this.fondo1.dibujar()
+        // this.jugador.dibujar(this.sumarFrames)
         
         
         
