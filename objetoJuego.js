@@ -9,7 +9,7 @@ const Game = {
     },
 
     init: function () {
-        //console.log("CARGADO")
+        console.log("CARGADO")
         this.canvas = document.getElementById('canvas')
         this.ctx = canvas.getContext('2d');
         //https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext
@@ -28,8 +28,15 @@ const Game = {
         this.loop = setInterval (() =>{  //interval
             this.sumarFrames++; //frameCounter
 
+            if(this.sumarFrames % 500 === 0) {
+                this.genarateEnemigo1()
+                
+            }
+
             this.moverTodo(); //moveAll
             this.pintarTodo();//drawAll
+
+            this.clearEnemigo1()
 
         }, 1000 / this.fps)
     },
@@ -47,6 +54,8 @@ const Game = {
         
         this.jugador = new Jugador(this.canvas.width, this.canvas.height, this.ctx, this.keys)
         
+        this.arrayEnemigo1 = [];
+        
       
     },
 
@@ -58,6 +67,10 @@ const Game = {
         this.fondo3.movimiento()
         this.fondo4.movimiento()
         this.jugador.movimiento()
+        
+        this.arrayEnemigo1.forEach(enemigo1 => {
+            enemigo1.movimiento()
+        })
     
         
     },
@@ -70,16 +83,25 @@ const Game = {
         this.fondo2.dibujar()
         this.jugador.dibujar(this.sumarFrames)
         this.fondo1.dibujar()
-        // this.jugador.dibujar(this.sumarFrames)
-        
-        
-        
-        
+
+        this.arrayEnemigo1.forEach(enemigo1 => {
+            enemigo1.dibujar(this.sumarFrames)
+        })
         
         
     },
     stop: function(){
         clearInterval(this.loop)
+    },
+    
+    genarateEnemigo1: function() {
+        this.arrayEnemigo1.push(
+            new Enemigo1(this.canvas.width, this.canvas.height, this.ctx)
+        )
+    },
+
+    clearEnemigo1: function() {
+        this.arrayEnemigo1 = this.arrayEnemigo1.filter((enemigo1) => enemigo1.x >= 0)
     },
 }
 

@@ -1,7 +1,6 @@
 class Jugador {
     constructor(w, h, ctx, keys){
 
-        console.log(h)
         this.ctx = ctx;
         this.canvasW = w;
         this.canvasH = h;
@@ -30,28 +29,27 @@ class Jugador {
         this.topLimit = this.canvasH * 0.03;
         this.bottomLimit = this.canvasH - this.h - this.topLimit;
 
+        this.bullets = []
+
     
-        
-
-
-
-       
-
     }
+
+    
 
     setListener(){
         
         document.onkeydown = function(event){
-            if (event.keyCode === this.keys.ARROW_UP  /* && this.y >= 15*/ ){
+            if (event.keyCode === this.keys.ARROW_UP){
                 this.dy = 3
-
-                
-                
                 }
-                else if (event.keyCode === this.keys.ARROW_DOWN/*  && this.y <= 630 */){
+                else if (event.keyCode === this.keys.ARROW_DOWN){
                 this.dy = -3
-               
-                }
+               }
+                    else if (event.keyCode === this.keys.SPACE){
+                    this.fire()
+                    
+                    }
+
         }.bind(this) 
 
         document.onkeyup = function(event){
@@ -80,15 +78,21 @@ class Jugador {
         )
 
     this.animarImg(sumarFrames)
+    
+    
+    //Borrar disparos
+
+    this.bullets = this.bullets.filter((bullet) => bullet.x < this.canvasW )
+        
+    this.bullets.forEach((bullet) => {
+        bullet.draw();
+        bullet.move();
+    })
+
     }
 
     movimiento(){
-
-        // this.y -= this.dy
-
-    
-     
-
+        
         if (
             this.y >= this.topLimit && this.y <= this.bottomLimit ||
             this.y < this.topLimit && this.dy <  0 ||
@@ -96,15 +100,39 @@ class Jugador {
             ){
             this.y -= this.dy
         } 
+
+        // this.x -= this.nx
         
     }
 
     animarImg(sumarFrames){
 
-        //console.log(sumarFrames)
         if (sumarFrames % 6 === 0){
             this.img.frameIndex++;
         }
         if (this.img.frameIndex > 2) this.img.frameIndex = 0;
     }
+
+    fire() {
+        const bullet = new Disparo(
+            this.x + this.w,
+            this.y + this.h / 2,
+            this.y0,
+            this.h,
+            this.ctx
+        )
+
+        this.bullets.push(bullet)
+    }
+
 }
+
+// function cargar(){
+//     const sonidoLaser = document.getElementById('sonidos');
+
+//     document.addEventListener('keydown', function(evento){
+//         if (evento.keyCode === 32){
+//             sonidos.innerHTML = '<audio src="assets/snd/fire1.wav" autoplay></audio>'
+//         }
+//     })
+// }
