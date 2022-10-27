@@ -1,4 +1,4 @@
-class Enemigo1 {
+class Enemigo2 {
 
     constructor(w, h, ctx) {
         this.ctx = ctx;
@@ -11,13 +11,13 @@ class Enemigo1 {
         this.x = this.canvasW
        
 
-        this.y = Math.floor(Math.random() * 680)
+        this.y = Math.floor(Math.random() * 650)
        
 
         
 
         this.img = new Image();
-        this.img.src = "assets/img/enemigo1.png"
+        this.img.src = "assets/img/enemigo2.png"
         
         this.img.frames = 3;
         this.img.frameIndex = 0;
@@ -26,9 +26,9 @@ class Enemigo1 {
         this.h = 60;
 
       
-        this.dx = 5; 
+        this.dx = 7;
 
-        this.bulletsEnemy = []
+        
         
 
     }
@@ -48,38 +48,19 @@ class Enemigo1 {
 
     this.animateImg(sumarFrames)
 
-    this.bulletsEnemy = this.bulletsEnemy.filter((bulletEnemy) => bulletEnemy.x < this.canvasW )
-        
-    this.bulletsEnemy.forEach((bullet) => {
-        bulletEnemy.draw();
-        bulletEnemy.move();
-    })
-
 
     }
 
     animateImg(sumarFrames) {
 
-        if(sumarFrames % 6 === 0) {
+        if(sumarFrames % 3 === 0) {
             this.img.frameIndex++;
         }
 
-        if(this.img.frameIndex > 2) this.img.frameIndex = 0;
+        if(this.img.frameIndex > 1) this.img.frameIndex = 0;
     }
     movimiento() {
         this.x -= this.dx;
-    }
-
-    fireEnemy() {
-        const bulletEnemy = new Disparo(
-            this.x + this.w,
-            this.y + this.h / 2,
-            this.y0,
-            this.h,
-            this.ctx
-        )
-
-        this.bulletsEnemy.push(bulletEnemy)
     }
 }
 

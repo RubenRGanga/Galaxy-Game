@@ -6,6 +6,7 @@ const Game = {
         ARROW_UP: 38,
         ARROW_DOWN: 40,
         SPACE: 32,
+        CONTROL: 17,
     },
 
     init: function () {
@@ -28,15 +29,20 @@ const Game = {
         this.loop = setInterval (() =>{  //interval
             this.sumarFrames++; //frameCounter
 
-            if(this.sumarFrames % 500 === 0) {
-                this.genarateEnemigo1()
-                
+            if(this.sumarFrames % 300 === 0) {
+                this.genarateEnemigo1() 
             }
+
+            if(this.sumarFrames % 500 === 0) {
+                this.genarateEnemigo2() 
+            }
+
 
             this.moverTodo(); //moveAll
             this.pintarTodo();//drawAll
 
             this.clearEnemigo1()
+            this.clearEnemigo2()
 
         }, 1000 / this.fps)
     },
@@ -55,6 +61,7 @@ const Game = {
         this.jugador = new Jugador(this.canvas.width, this.canvas.height, this.ctx, this.keys)
         
         this.arrayEnemigo1 = [];
+        this.arrayEnemigo2 = [];
         
       
     },
@@ -70,6 +77,10 @@ const Game = {
         
         this.arrayEnemigo1.forEach(enemigo1 => {
             enemigo1.movimiento()
+        })
+
+        this.arrayEnemigo2.forEach(enemigo2 => {
+            enemigo2.movimiento()
         })
     
         
@@ -88,11 +99,16 @@ const Game = {
             enemigo1.dibujar(this.sumarFrames)
         })
         
+        this.arrayEnemigo2.forEach(enemigo2 => {
+            enemigo2.dibujar(this.sumarFrames)
+        })
         
     },
     stop: function(){
         clearInterval(this.loop)
     },
+
+//ENEMIGO 1
     
     genarateEnemigo1: function() {
         this.arrayEnemigo1.push(
@@ -103,5 +119,17 @@ const Game = {
     clearEnemigo1: function() {
         this.arrayEnemigo1 = this.arrayEnemigo1.filter((enemigo1) => enemigo1.x >= 0)
     },
+
+//ENEMIGO 2
+    genarateEnemigo2: function() {
+        this.arrayEnemigo2.push(
+            new Enemigo2(this.canvas.width, this.canvas.height, this.ctx)
+        )
+    },
+
+    clearEnemigo2: function() {
+        this.arrayEnemigo2 = this.arrayEnemigo2.filter((enemigo2) => enemigo2.x >= 0)
+    },
+
 }
 
