@@ -129,11 +129,11 @@ class Jugador {
 
 
     fire() {
-        const bullet = new Disparo(
-            this.x + this.w,
+        let bullet = new Laser(
+            this.x + this.w -60,
             this.y + this.h / 2,
-            this.y0,
-            this.h,
+            20,
+            // this.h,
             this.ctx
         )
 

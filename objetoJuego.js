@@ -44,6 +44,10 @@ const Game = {
             this.clearEnemigo1()
             this.clearEnemigo2()
 
+            if (this.colision()) {
+                this.gameOver()
+            }
+
         }, 1000 / this.fps)
     },
 
@@ -131,5 +135,28 @@ const Game = {
         this.arrayEnemigo2 = this.arrayEnemigo2.filter((enemigo2) => enemigo2.x >= 0)
     },
 
+    colision: function(){
+        return this.arrayEnemigo1.some(enUno => {
+            return (
+                this.jugador.y <= enUno.y + enUno.h*0.75 &&
+                this.jugador.x + this.jugador.w*0.75 >= enUno.x &&
+                this.jugador.y + this.jugador.h*0.75 >= enUno.y
+                // && this.jugador.x <= enUno.x + enUno.w
+            )
+        })
+    },
+
+    diana: function(){
+        console.log("Destruido!")
+    },
+
+    gameOver: function(){
+        this.stop();
+        if (confirm("GAME OVER \n NO HAS DEFENDIDO TU PLANETA \n ¿VOLVER A INTENTARLO?")) {
+            this.reset();
+            this.start();
+        }
+    }
 }
+
 
