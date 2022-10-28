@@ -48,6 +48,10 @@ const Game = {
                 this.gameOver()
             }
 
+            if (this.colision2()) {
+                this.gameOver()
+            }
+
         }, 1000 / this.fps)
     },
 
@@ -145,6 +149,18 @@ const Game = {
             )
         })
     },
+
+    colision2: function(){
+        return this.arrayEnemigo2.some(enDos => {
+            return (
+                this.jugador.y <= enDos.y + enDos.h*0.75 &&
+                this.jugador.x + this.jugador.w*0.75 >= enDos.x &&
+                this.jugador.y + this.jugador.h*0.75 >= enDos.y
+                // && this.jugador.x <= enDos.x + enDos.w
+            )
+        })
+    },
+
 
     diana: function(){
         console.log("Destruido!")
