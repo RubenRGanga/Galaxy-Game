@@ -31,19 +31,10 @@ class Jugador {
 
         this.bullets = []
 
-        this.lastPress = 0;
+   
 
     
     }
-
-    // myListener() {
-    //     this.now = Date.now();
-    //     if (this.now - this.lastPress < 1000) return; // less than a second ago, stop
-    //     this.lastPress = this.now;
-    //     // continue..
-    // }
-
-    
 
     setListener(){
         
@@ -52,7 +43,7 @@ class Jugador {
                 this.dy = 3
                 }
                 else if (event.keyCode === this.keys.ARROW_DOWN){
-                this.dy = -3
+                this.dy = -3, console.log("abajo")
                }
                     else if (event.keyCode === this.keys.CONTROL){
             

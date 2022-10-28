@@ -1,16 +1,17 @@
 window.onload = function () {
-    alert("DISPARO = Ctrl \nMOVERSE = Flechas Arriba/Abajo")
-    var myAudio= document.createElement('audio');
-    var myMessageAlert = "";
-    myAudio.src = 'assets/snd/DUST.mp3';
-    myAudio.addEventListener('ended', function(){
-       alert(myMessageAlert);
-    });
-   function Myalert(message) { 
-       myAudio.play();
-       myMessageAlert = message;
-   } 
-   Myalert("DISPARO = Ctrl - MOVERSE = Flechas Arriba/Abajo");
+
+confirm("DISPARO = Ctrl \n MOVERSE = Flechas Arriba/Abajo")
+//     var miAudio = document.createElement('audio');
+//     var mensajeConfirm = "";
+//     miAudio.src = 'assets/snd/DUST.mp3';
+//     miAudio.addEventListener('ended', function(){
+//         confirm(mensajeConfirm);
+//     });
+//         function miConfirm(mensaje){
+//             miAudio.play();
+//             mensajeConfirm = mensaje;
+//         }
+//         miConfirm("DISPARO = Ctrl \n MOVERSE = Flechas Arriba/Abajo")
 
     Game.init()
 }

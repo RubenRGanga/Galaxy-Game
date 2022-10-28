@@ -2,8 +2,8 @@ class Laser {
     constructor(x, y, w, ctx){
         this.x = x;
         this.y = y;
-        this.misilW = w;
-        this.misilH = this.misilW;
+        this.laserW = w;
+        this.laserH = this.laserW;
         this.ctx = ctx;
 
         this.img = new Image();
@@ -17,8 +17,8 @@ class Laser {
             this.img,
             this.x,          //posicion x de la nave
             this.y,            //posicion y de la nave
-            this.misilW,
-            this.misilH
+            this.laserW,
+            this.laserH
         )
     }
 

@@ -5,7 +5,6 @@ const Game = {
     keys: {
         ARROW_UP: 38,
         ARROW_DOWN: 40,
-        SPACE: 32,
         CONTROL: 17,
     },
 
@@ -50,6 +49,10 @@ const Game = {
 
             if (this.colision2()) {
                 this.gameOver()
+            }
+
+            if (this.laserColision()){
+                console.log("destruido")
             }
 
         }, 1000 / this.fps)
@@ -160,6 +163,40 @@ const Game = {
             )
         })
     },
+
+    laserColision: function () {
+        return this.arrayEnemigo1.some(enUno => {
+            return this.jugador.bullets.some(laser => {
+                const result = (
+                    laser.y <= enUno.y + enUno.h &&
+                    laser.x <= enUno.x + enUno.w &&
+                    laser.x + laser.laserW >= enUno.x &&
+                    laser.y + laser.laserH >= enUno.y
+                )
+                if(result) {
+                    this.arrayEnemigo1 = this.arrayEnemigo1.filter(en => en !== enUno)
+                    this.jugador.bullets = this.jugador.bullets.filter(l => l !== laser)
+                    }
+                    return result
+            })
+        })
+    },
+
+    // misilCollision: function () {
+    //     return this.enemies.some(ovni => {
+    //         return this.shuttle.missiles.some(misil => {
+    //             const result = (
+    //                 misil.y <= ovni.y + ovni.h &&
+    //                 misil.x <= ovni.x + ovni.w &&
+    //                 misil.x + misil.misilW >= ovni.x &&
+    //                 misil.y + misil.misilH >= ovni.y
+    //             )
+    //             if(result) {
+    //                 this.enemies = this.enemies.filter(o => o !== ovni)
+    //                 this.shuttle.missiles = this.shuttle.missiles.filter(m => m !== misil)
+    //             }
+    //             return result
+    //         })
 
 
     diana: function(){
