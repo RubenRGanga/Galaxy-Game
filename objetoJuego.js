@@ -9,52 +9,36 @@ const Game = {
     },
 
     init: function () {
-        console.log("CARGADO")
         this.canvas = document.getElementById('canvas')
-        this.ctx = canvas.getContext('2d');
         //https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext
+        this.ctx = canvas.getContext('2d');
         
-        
-
         this.start()
     },
 
     start: function (){
-        // console.log("INICIA")
-        
         this.reset()
         
-
-        this.loop = setInterval (() =>{  //interval
+        this.loop = setInterval (() =>{  
             this.sumarFrames++; //frameCounter
 
-            if(this.sumarFrames % 300 === 0) {
-                this.genarateEnemigo1() 
+            if (this.sumarFrames % 300 === 0) {
+                this.generaEnemigo("NaveMetralla") 
             }
 
-            if(this.sumarFrames % 500 === 0) {
-                this.genarateEnemigo2() 
+            if (this.sumarFrames % 500 === 0) {
+                this.generaEnemigo("NaveSupersonica") 
             }
 
+            this.moverTodo(); 
+            this.pintarTodo();
+            this.shootIA()
 
-            this.moverTodo(); //moveAll
-            this.pintarTodo();//drawAll
-
-            this.clearEnemigo1()
-            this.clearEnemigo2()
-
-            if (this.colision()) {
+            this.limpiaEnemigo()
+           
+            if (this.esColision() || this.isDamage())
                 this.gameOver()
-            }
-
-            if (this.colision2()) {
-                this.gameOver()
-            }
-
-            if (this.laserColision()){
-                console.log("destruido")
-            }
-
+            this.esDiana() && console.log(++this.score)
         }, 1000 / this.fps)
     },
 
@@ -71,10 +55,8 @@ const Game = {
         
         this.jugador = new Jugador(this.canvas.width, this.canvas.height, this.ctx, this.keys)
         
-        this.arrayEnemigo1 = [];
-        this.arrayEnemigo2 = [];
-        
-      
+        this.enemigos = [];
+        this.score = 0;
     },
 
     moverTodo: function(){
@@ -86,19 +68,9 @@ const Game = {
         this.fondo4.movimiento()
         this.jugador.movimiento()
         
-        this.arrayEnemigo1.forEach(enemigo1 => {
-            enemigo1.movimiento()
-        })
-
-        this.arrayEnemigo2.forEach(enemigo2 => {
-            enemigo2.movimiento()
-        })
-    
-        
+        this.enemigos.forEach(enemigo => enemigo.movimiento())
     },
     pintarTodo: function(){
-        // console.log("P")
-
         this.fondo.dibujar()
         this.fondo4.dibujar()
         this.fondo3.dibujar()
@@ -106,14 +78,7 @@ const Game = {
         this.jugador.dibujar(this.sumarFrames)
         this.fondo1.dibujar()
 
-        this.arrayEnemigo1.forEach(enemigo1 => {
-            enemigo1.dibujar(this.sumarFrames)
-        })
-        
-        this.arrayEnemigo2.forEach(enemigo2 => {
-            enemigo2.dibujar(this.sumarFrames)
-        })
-        
+        this.enemigos.forEach(enemigo => enemigo.dibujar(this.sumarFrames))
     },
     stop: function(){
         clearInterval(this.loop)
@@ -121,86 +86,67 @@ const Game = {
 
 //ENEMIGO 1
     
-    genarateEnemigo1: function() {
-        this.arrayEnemigo1.push(
-            new Enemigo1(this.canvas.width, this.canvas.height, this.ctx)
-        )
+    generaEnemigo: function(tipo) {
+            this.enemigos.push(
+                new (eval(tipo))(this.canvas.width, this.canvas.height, this.ctx)
+            )  
     },
 
-    clearEnemigo1: function() {
-        this.arrayEnemigo1 = this.arrayEnemigo1.filter((enemigo1) => enemigo1.x >= 0)
+    limpiaEnemigo: function() {
+        this.enemigos = this.enemigos.filter((enemigo) => enemigo.x >= 0)
     },
 
-//ENEMIGO 2
-    genarateEnemigo2: function() {
-        this.arrayEnemigo2.push(
-            new Enemigo2(this.canvas.width, this.canvas.height, this.ctx)
-        )
-    },
-
-    clearEnemigo2: function() {
-        this.arrayEnemigo2 = this.arrayEnemigo2.filter((enemigo2) => enemigo2.x >= 0)
-    },
-
-    colision: function(){
-        return this.arrayEnemigo1.some(enUno => {
+    esColision: function(){
+        return this.enemigos.some(enemigo => {
             return (
-                this.jugador.y <= enUno.y + enUno.h*0.75 &&
-                this.jugador.x + this.jugador.w*0.75 >= enUno.x &&
-                this.jugador.y + this.jugador.h*0.75 >= enUno.y
+                this.jugador.y <= enemigo.y + enemigo.h*0.75 &&
+                this.jugador.x + this.jugador.w*0.75 >= enemigo.x &&
+                this.jugador.y + this.jugador.h*0.75 >= enemigo.y
                 // && this.jugador.x <= enUno.x + enUno.w
             )
         })
     },
 
-    colision2: function(){
-        return this.arrayEnemigo2.some(enDos => {
-            return (
-                this.jugador.y <= enDos.y + enDos.h*0.75 &&
-                this.jugador.x + this.jugador.w*0.75 >= enDos.x &&
-                this.jugador.y + this.jugador.h*0.75 >= enDos.y
-                // && this.jugador.x <= enDos.x + enDos.w
-            )
-        })
-    },
-
-    laserColision: function () {
-        return this.arrayEnemigo1.some(enUno => {
-            return this.jugador.bullets.some(laser => {
-                const result = (
-                    laser.y <= enUno.y + enUno.h &&
-                    laser.x <= enUno.x + enUno.w &&
-                    laser.x + laser.laserW >= enUno.x &&
-                    laser.y + laser.laserH >= enUno.y
-                )
-                if(result) {
-                    this.arrayEnemigo1 = this.arrayEnemigo1.filter(en => en !== enUno)
-                    this.jugador.bullets = this.jugador.bullets.filter(l => l !== laser)
-                    }
-                    return result
+    isDamage: function () {
+        return this.enemigos.some(enemigo => {
+            if (!(enemigo instanceof Nave)) return false
+            return enemigo.bullets.some(laser => {
+                return (
+                    laser.y <= this.jugador.y + this.jugador.h &&
+                    laser.x <= this.jugador.x + this.jugador.w - 80 &&
+                    laser.x + laser.laserW >= this.jugador.x &&
+                    laser.y + laser.laserH >= this.jugador.y)
             })
         })
     },
 
-    // misilCollision: function () {
-    //     return this.enemies.some(ovni => {
-    //         return this.shuttle.missiles.some(misil => {
-    //             const result = (
-    //                 misil.y <= ovni.y + ovni.h &&
-    //                 misil.x <= ovni.x + ovni.w &&
-    //                 misil.x + misil.misilW >= ovni.x &&
-    //                 misil.y + misil.misilH >= ovni.y
-    //             )
-    //             if(result) {
-    //                 this.enemies = this.enemies.filter(o => o !== ovni)
-    //                 this.shuttle.missiles = this.shuttle.missiles.filter(m => m !== misil)
-    //             }
-    //             return result
-    //         })
+    esDiana: function () {
+        return this.enemigos.some(enemigo => {
+            return this.jugador.bullets.some(laser => {
+                const result = (
+                    laser.y <= enemigo.y + enemigo.h &&
+                    laser.x <= enemigo.x + enemigo.w &&
+                    laser.x + laser.laserW >= enemigo.x &&
+                    laser.y + laser.laserH >= enemigo.y
+                )
 
+                if(result) {
 
-    diana: function(){
-        console.log("Destruido!")
+                    enemigo.explotar(this.enemigos)
+                    //this.enemigos = this.enemigos.filter(ene => ene !== enemigo)
+                    this.jugador.bullets = this.jugador.bullets.filter(las => las !== laser)       
+                }
+
+                return result
+            })
+        })
+    },
+
+    shootIA() {
+        this.enemigos.forEach(enemigo => {
+            if (enemigo instanceof Nave)
+                enemigo.dispara(this.sumarFrames)
+        })
     },
 
     gameOver: function(){
@@ -209,7 +155,7 @@ const Game = {
             this.reset();
             this.start();
         }
-    }
+    },
 }
 
 

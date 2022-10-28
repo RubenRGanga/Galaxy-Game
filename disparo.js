@@ -1,46 +1,30 @@
-class Disparo {
-
-    constructor(x, y, y0, h, ctx) {
+class Laser {
+    constructor(x, y, ctx, v = 20, tipo = 24,){
         this.x = x;
         this.y = y;
-        this.y0 = y0;
-        
-
-        this.playerH = h;
-
+        this.laserW = 20;
+        this.laserH = this.laserW;
         this.ctx = ctx;
 
-        this.r = 4; //Radio si se usa una pelota
+        this.img = new Image();
+        this.img.src = `assets/img/laser/${tipo}.png`;
 
-        this.vx = 20;
-        this.vy = 1;
+        this.vel_x = v; 
 
-        // this.gravity = 0.25;
-
-        // this.img = new Image();
-        // this.img.src = "assets/img/Laser Sprites/24.png"
-
-        // this.w = 25;
-        // this.h = 12;
+        
     }
-    
 
     dibujar() {
-        this.ctx.beginPath();
-        this.ctx.fillStyle = "red";
-        this.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        this.ctx.fill();
-        this.ctx.closePath();
-    }   
+        this.ctx.drawImage(
+            this.img,
+            this.x,          //posicion x de la nave
+            this.y,            //posicion y de la nave
+            this.laserW,
+            this.laserH
+        )
+    }
 
-
-
-
-    movimientoDisparo() {
-        // Avance pelota
-
-        this.x += this.vx;
-
-
+    movimientoDisparo(){
+        this.x += this.vel_x;
     }
 }

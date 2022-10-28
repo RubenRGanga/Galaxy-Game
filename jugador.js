@@ -123,9 +123,7 @@ class Jugador {
         let bullet = new Laser(
             this.x + this.w -60,
             this.y + this.h / 2,
-            20,
-            // this.h,
-            this.ctx
+            this.ctx,
         )
 
         this.bullets.push(bullet)
