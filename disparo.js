@@ -1,15 +1,15 @@
 class Laser {
-    constructor(x, y, ctx, v = 20, tipo = 24,){
+    constructor(x, y, ctx, v = 20, tipo = 64,){
         this.x = x;
         this.y = y;
-        this.laserW = 20;
-        this.laserH = this.laserW;
+        this.laserW = 60; //Ancho del disparo.
+        this.laserH = 20; //Alto del disparo.
         this.ctx = ctx;
 
         this.img = new Image();
         this.img.src = `assets/img/laser/${tipo}.png`;
 
-        this.vel_x = v; 
+        this.vel_x = 20; 
 
         
     }

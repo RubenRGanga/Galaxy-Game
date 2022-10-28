@@ -39,6 +39,7 @@ const Game = {
             if (this.esColision() || this.isDamage())
                 this.gameOver()
             this.esDiana() && console.log(++this.score)
+
         }, 1000 / this.fps)
     },
 
@@ -84,7 +85,7 @@ const Game = {
         clearInterval(this.loop)
     },
 
-//ENEMIGO 1
+//ENEMIGO
     
     generaEnemigo: function(tipo) {
             this.enemigos.push(

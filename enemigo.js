@@ -1,5 +1,7 @@
 const randomInt = (min, max)  => Math.floor(Math.random() * (max - min) + min);
 
+//SUPER CLASE ENEMIGO
+
 class Enemigo {
     constructor(canvasW, y, w, h, img, ctx) {
         this.ctx = ctx;
@@ -30,6 +32,8 @@ class Enemigo {
         this.animateImg(sumarFrames)
     }
 
+    //ANIMACIÓN SPRITE ENEMIGO.
+
     animateImg(sumarFrames) {
         if(sumarFrames % 6 === 0)
             this.img.frameIndex++;
@@ -52,15 +56,17 @@ class Enemigo {
     }
 
     setDX(dx) {
-        this.dx = dx
+        this.dx = dx //Velocifad desplazamiento horizontal del enemigo.
     }
 
     explotar(arrEnemigos) {
         if(!this.derribado) {
             this.arrEnemigos = arrEnemigos;
             this.derribado = true;
-            this.img.frames = 11
+            this.img.frames = 11 //Frames animación explosión.
             this.img.frameIndex = 0
+            this.img.h = 20 //No me acepta este parametro como tamaño del sprite.
+            this.img.w = 20 //No me acepta este parametro como tamaño del sprite.
             
             this.img.src = `assets/img/explosion.png`
         }
@@ -69,7 +75,8 @@ class Enemigo {
     
 }
 
-// Enemigo > Nave
+// ENEMIGO > NAVE
+
 class Nave extends Enemigo {
     constructor(canvasW, canvasH, tipo, crop, ctx) {
         const w = 200;
@@ -89,17 +96,17 @@ class Nave extends Enemigo {
     }
 
     dispara (sumarFrame) {
-        if(sumarFrame % 100 === 0) {
-            console.log("NUEVA LASEr")
+        if(sumarFrame % 125 === 0) { //Cadencia de disparo enemigo.
+            console.log("LASER ENEMIGO")
             const bullet = new Laser(
-                this.x + 60,
+                this.x,
                 this.y + this.h / 2,
                 this.ctx,
-                randomInt(-50, -1),
-                "0" + randomInt(1, 9)
+                randomInt(-10, -1),
+                "1" + randomInt(1, 9) //Skin del disparo enemigo.
                 )
 
-            bullet.vel_x = -20;
+            bullet.vel_x = -10; //Velocidad del disparo enemigo.
             this.bullets.push(bullet)
         }
             
@@ -112,18 +119,20 @@ class Nave extends Enemigo {
     }
 }
 
-// Enemigo > Nave > NaveMetralla
+// ENEMIGO > NAVE > METRALLA
 class NaveMetralla extends Nave {
     constructor(canvasW, canvasH, ctx) {
         const tipo = 1;
         const crop = canvasH * .1;
+     
         
         super(canvasW, canvasH, tipo, crop, ctx)
         super.setDX(5)
+        
     }
 }
 
-// Enemigo > Nave > NaveSupersonica
+// ENEMIGO > NAVE > SUPERSONICA
 class NaveSupersonica extends Nave {
     constructor(canvasW, canvasH, ctx) {
         const tipo = 2;
@@ -135,7 +144,7 @@ class NaveSupersonica extends Nave {
     }
 }
 
-// Enemigo > Mina
+// ENEMIGO > MINA
 class Mina extends Enemigo {
     
 }
