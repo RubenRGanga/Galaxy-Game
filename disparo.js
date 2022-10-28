@@ -25,7 +25,7 @@ class Disparo {
     }
     
 
-    draw() {
+    dibujar() {
         this.ctx.beginPath();
         this.ctx.fillStyle = "red";
         this.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
@@ -36,8 +36,9 @@ class Disparo {
 
 
 
-    move() {
+    movimientoDisparo() {
         // Avance pelota
+
         this.x += this.vx;
 
 

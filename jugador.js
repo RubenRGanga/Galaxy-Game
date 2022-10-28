@@ -31,8 +31,17 @@ class Jugador {
 
         this.bullets = []
 
+        this.lastPress = 0;
+
     
     }
+
+    // myListener() {
+    //     this.now = Date.now();
+    //     if (this.now - this.lastPress < 1000) return; // less than a second ago, stop
+    //     this.lastPress = this.now;
+    //     // continue..
+    // }
 
     
 
@@ -45,12 +54,15 @@ class Jugador {
                 else if (event.keyCode === this.keys.ARROW_DOWN){
                 this.dy = -3
                }
-                    else if (event.keyCode === this.keys.SPACE){
+                    else if (event.keyCode === this.keys.CONTROL){
+            
                     this.fire()
                     
                     }
 
         }.bind(this) 
+
+        
 
         document.onkeyup = function(event){
             if (event.keyCode === this.keys.ARROW_UP){
@@ -60,6 +72,7 @@ class Jugador {
                 this.dy = 0
                 }
         }.bind(this) 
+
     }
     
 
@@ -85,8 +98,8 @@ class Jugador {
     this.bullets = this.bullets.filter((bullet) => bullet.x < this.canvasW )
         
     this.bullets.forEach((bullet) => {
-        bullet.draw();
-        bullet.move();
+        bullet.dibujar();
+        bullet.movimientoDisparo();
     })
 
     }
@@ -113,6 +126,8 @@ class Jugador {
         if (this.img.frameIndex > 2) this.img.frameIndex = 0;
     }
 
+
+
     fire() {
         const bullet = new Disparo(
             this.x + this.w,
@@ -125,14 +140,6 @@ class Jugador {
         this.bullets.push(bullet)
     }
 
-}
+    }
 
-// function cargar(){
-//     const sonidoLaser = document.getElementById('sonidos');
 
-//     document.addEventListener('keydown', function(evento){
-//         if (evento.keyCode === 32){
-//             sonidos.innerHTML = '<audio src="assets/snd/fire1.wav" autoplay></audio>'
-//         }
-//     })
-// }

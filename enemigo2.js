@@ -53,11 +53,11 @@ class Enemigo2 {
 
     animateImg(sumarFrames) {
 
-        if(sumarFrames % 3 === 0) {
+        if(sumarFrames % 6 === 0) {
             this.img.frameIndex++;
         }
 
-        if(this.img.frameIndex > 1) this.img.frameIndex = 0;
+        if(this.img.frameIndex > 2) this.img.frameIndex = 0;
     }
     movimiento() {
         this.x -= this.dx;

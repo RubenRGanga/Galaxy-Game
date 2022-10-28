@@ -12,10 +12,7 @@ class Enemigo1 {
        
 
         this.y = Math.floor(Math.random() * 680)
-       
-
-        
-
+    
         this.img = new Image();
         this.img.src = "assets/img/enemigo1.png"
         
@@ -51,8 +48,8 @@ class Enemigo1 {
     this.bulletsEnemy = this.bulletsEnemy.filter((bulletEnemy) => bulletEnemy.x < this.canvasW )
         
     this.bulletsEnemy.forEach((bullet) => {
-        bulletEnemy.draw();
-        bulletEnemy.move();
+        bulletEnemy.dibujar();
+        bulletEnemy.movimientoDisparo();
     })
 
 
