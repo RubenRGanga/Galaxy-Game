@@ -1,4 +1,7 @@
-const Game = {
+const Game = { 
+
+//PROPIEDADES DEL OBJETO
+
     canvas: undefined,
     ctx: undefined,
     fps: 60,
@@ -7,6 +10,8 @@ const Game = {
         ARROW_DOWN: 40,
         CONTROL: 17,
     },
+
+//METODOS DE INICIO, RESET, STOP, MOVER Y PINTAR
 
     init: function () {
         this.canvas = document.getElementById('canvas')
@@ -28,6 +33,10 @@ const Game = {
 
             if (this.sumarFrames % 500 === 0) {
                 this.generaEnemigo("NaveSupersonica") 
+            }
+
+            if (this.sumarFrames % 400 === 0) {
+                this.generaEnemigo("Mina")
             }
 
             this.moverTodo(); 
@@ -97,6 +106,8 @@ const Game = {
         this.enemigos = this.enemigos.filter((enemigo) => enemigo.x >= 0)
     },
 
+//COLISIONES ENTRE ENEMIGO Y JUGADOR
+
     esColision: function(){
         return this.enemigos.some(enemigo => {
             return (
@@ -107,6 +118,8 @@ const Game = {
             )
         })
     },
+
+//COLISIÓN ENTRE DISPARO ENEMIGO Y JUGADOR
 
     isDamage: function () {
         return this.enemigos.some(enemigo => {
@@ -120,6 +133,8 @@ const Game = {
             })
         })
     },
+
+//COLISIÓN ENTRE DISPARO DEL JUGADOR Y ENEMIGO
 
     esDiana: function () {
         return this.enemigos.some(enemigo => {
@@ -143,12 +158,16 @@ const Game = {
         })
     },
 
+//METODO PARA EL DISPARO ENEMIGO.
+
     shootIA() {
         this.enemigos.forEach(enemigo => {
             if (enemigo instanceof Nave)
                 enemigo.dispara(this.sumarFrames)
         })
     },
+
+//GAME OVER.
 
     gameOver: function(){
         this.stop();

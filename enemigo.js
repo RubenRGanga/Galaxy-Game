@@ -150,19 +150,19 @@ class Mina extends Enemigo {
         const w = 40;
         const h = 40;
 
-        const y = jugador.y.bind
-        const img = new Image();
-
-        img.src = `assets/img/enemigo${tipo}.png`
-        img.frames = 3
-        img.frameIndex = 0
-        
         const tipo = 3;
         const crop = canvasH * .1;
      
         
         super(canvasW, canvasH, tipo, crop, ctx)
-        super.setDX(20)
+        super.setDX(20) //¿para que se desplace de forma senoidal tengo que añadir el coseno de x a la velocidad?
+
+        const y = jugador.y; //logicamente jugador no esta definido en esta linea. 
+        const img = new Image();
+
+        img.src = `assets/img/enemigo${tipo}.png`
+        img.frames = 3
+        img.frameIndex = 0
         
     }
     
