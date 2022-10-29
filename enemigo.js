@@ -64,7 +64,7 @@ class Enemigo {
             this.arrEnemigos = arrEnemigos;
             this.derribado = true;
             this.img.frames = 11 //Frames animación explosión.
-            this.img.frameIndex = 0
+            this.img.frameIndex = 0 //En que frame empieza la animación.
             this.img.h = 20 //No me acepta este parametro como tamaño del sprite.
             this.img.w = 20 //No me acepta este parametro como tamaño del sprite.
             
@@ -97,7 +97,7 @@ class Nave extends Enemigo {
 
     dispara (sumarFrame) {
         if(sumarFrame % 125 === 0) { //Cadencia de disparo enemigo.
-            console.log("LASER ENEMIGO")
+            
             const bullet = new Laser(
                 this.x,
                 this.y + this.h / 2,
@@ -146,5 +146,24 @@ class NaveSupersonica extends Nave {
 
 // ENEMIGO > MINA
 class Mina extends Enemigo {
+    constructor(canvasW, canvasH, ctx) {
+        const w = 40;
+        const h = 40;
+
+        const y = jugador.y.bind
+        const img = new Image();
+
+        img.src = `assets/img/enemigo${tipo}.png`
+        img.frames = 3
+        img.frameIndex = 0
+        
+        const tipo = 3;
+        const crop = canvasH * .1;
+     
+        
+        super(canvasW, canvasH, tipo, crop, ctx)
+        super.setDX(20)
+        
+    }
     
 }

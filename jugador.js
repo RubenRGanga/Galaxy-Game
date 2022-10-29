@@ -43,7 +43,7 @@ class Jugador {
                 this.dy = 3
                 }
                 else if (event.keyCode === this.keys.ARROW_DOWN){
-                this.dy = -3, console.log("abajo")
+                this.dy = -3
                }
                     else if (event.keyCode === this.keys.CONTROL){
             
