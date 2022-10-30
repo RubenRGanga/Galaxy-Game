@@ -56,7 +56,7 @@ class Enemigo {
     }
 
     setDX(dx) {
-        this.dx = dx //Velocifad desplazamiento horizontal del enemigo.
+        this.dx = dx //Velocidad desplazamiento horizontal del enemigo.
     }
 
     explotar(arrEnemigos) {
@@ -96,7 +96,7 @@ class Nave extends Enemigo {
     }
 
     dispara (sumarFrame) {
-        if(sumarFrame % 125 === 0) { //Cadencia de disparo enemigo.
+        if(!this.derribado && sumarFrame % 125 === 0) { //Cadencia de disparo enemigo.
             
             const bullet = new Laser(
                 this.x,
@@ -157,7 +157,7 @@ class Mina extends Enemigo {
         super(canvasW, canvasH, tipo, crop, ctx)
         super.setDX(20) //¿para que se desplace de forma senoidal tengo que añadir el coseno de x a la velocidad?
 
-        const y = jugador.y; //logicamente jugador no esta definido en esta linea. 
+        const y = 300; //logicamente jugador no esta definido en esta linea. 
         const img = new Image();
 
         img.src = `assets/img/enemigo${tipo}.png`

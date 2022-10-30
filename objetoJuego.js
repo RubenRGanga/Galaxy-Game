@@ -35,9 +35,9 @@ const Game = {
                 this.generaEnemigo("NaveSupersonica") 
             }
 
-            if (this.sumarFrames % 400 === 0) {
-                this.generaEnemigo("Mina")
-            }
+            // if (this.sumarFrames % 400 === 0) {
+            //     this.generaEnemigo("Mina")
+            // }
 
             this.moverTodo(); 
             this.pintarTodo();
