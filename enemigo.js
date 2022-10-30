@@ -14,6 +14,9 @@ class Enemigo {
         this.x = canvasW
         this.y = y
         this.derribado = false;
+
+        this.sonidoExplosion = new Audio('assets/snd/blast.wav');
+
     }
 
     dibujar(sumarFrames) {
@@ -63,6 +66,7 @@ class Enemigo {
         if(!this.derribado) {
             this.arrEnemigos = arrEnemigos;
             this.derribado = true;
+            this.sonidoExplosion.play();
             this.img.frames = 11 //Frames animación explosión.
             this.img.frameIndex = 0 //En que frame empieza la animación.
             this.img.h = 20 //No me acepta este parametro como tamaño del sprite.
@@ -92,11 +96,15 @@ class Nave extends Enemigo {
         super(canvasW, y, w, h, img, ctx)
 
         this.bullets = []
+
+        this.sonidoLaserEnemigo = new Audio('assets/snd/laserEnemigo.wav');
        
     }
 
     dispara (sumarFrame) {
         if(!this.derribado && sumarFrame % 125 === 0) { //Cadencia de disparo enemigo.
+            
+            this.sonidoLaserEnemigo.play();
             
             const bullet = new Laser(
                 this.x,

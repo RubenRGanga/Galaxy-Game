@@ -31,6 +31,8 @@ class Jugador {
 
         this.bullets = []
 
+        this.sonidoLaser = new Audio('assets/snd/fire.wav');
+
    
 
     
@@ -40,14 +42,15 @@ class Jugador {
         
         document.onkeydown = function(event){
             if (event.keyCode === this.keys.ARROW_UP){
-                this.dy = 3
+                this.dy = 4
                 }
                 else if (event.keyCode === this.keys.ARROW_DOWN){
-                this.dy = -3
+                this.dy = -4
                }
                     else if (event.keyCode === this.keys.CONTROL){
             
                     this.fire()
+                    this.sonidoLaser.play();
                     
                     }
 
