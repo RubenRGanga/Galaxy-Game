@@ -1,9 +1,10 @@
-const Game = { 
+const Game = {  undefined,
 
 //PROPIEDADES DEL OBJETO
 
     canvas: undefined,
     ctx: undefined,
+    // scoreBoard: undefined,
     fps: 60,
     keys: {
         ARROW_UP: 38,
@@ -17,6 +18,8 @@ const Game = {
         this.canvas = document.getElementById('canvas')
         //https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext
         this.ctx = canvas.getContext('2d');
+
+        // ScoreBoard.init(this.ctx);
         
         this.start()
     },
@@ -49,6 +52,22 @@ const Game = {
                 this.gameOver()
             this.esDiana() && console.log(++this.score)
 
+            // this.ScoreBoard = {
+
+            //     ctx: undefined,
+            //     init: function(ctx) {
+            //         ctx.font = "30px sans-serif"
+            //         this.ctx = ctx;
+            //     },
+            
+            //     update: function(score) {
+            //         this.ctx.fillStyle = "black";
+            //         this.ctx.fillText(Math.floor(this.score), 50 , 50)
+            //     }
+            
+            // }
+            
+
         }, 1000 / this.fps)
     },
 
@@ -67,6 +86,7 @@ const Game = {
         
         this.enemigos = [];
         this.score = 0;
+        // this.scoreBoard = ScoreBoard;
     },
 
     moverTodo: function(){
@@ -89,6 +109,7 @@ const Game = {
         this.fondo1.dibujar()
 
         this.enemigos.forEach(enemigo => enemigo.dibujar(this.sumarFrames))
+        // this.drawScore();
     },
     stop: function(){
         clearInterval(this.loop)
@@ -96,11 +117,12 @@ const Game = {
 
 //ENEMIGO
     
-    generaEnemigo: function(tipo) {
+    generaEnemigo: function(tipo, playerY = undefined) {
             this.enemigos.push(
-                new (eval(tipo))(this.canvas.width, this.canvas.height, this.ctx)
+                new (eval(tipo))(this.canvas.width, this.canvas.height, this.ctx, playerY)
             )  
     },
+
 
     limpiaEnemigo: function() {
         this.enemigos = this.enemigos.filter((enemigo) => enemigo.x >= 0)
@@ -176,6 +198,10 @@ const Game = {
             this.start();
         }
     },
+
+    // drawScore: function() {
+    //     this.scoreBoard.update(this.score)
+    // }
 }
 
 

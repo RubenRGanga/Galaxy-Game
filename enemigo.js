@@ -154,18 +154,17 @@ class NaveSupersonica extends Nave {
 
 // ENEMIGO > MINA
 class Mina extends Enemigo {
-    constructor(canvasW, canvasH, ctx) {
+    constructor(canvasW, canvasH, ctx, playerY) {
         const w = 40;
         const h = 40;
-
         const tipo = 3;
         const crop = canvasH * .1;
-     
+        const y = playerY + h /2;
         
-        super(canvasW, canvasH, tipo, crop, ctx)
+        super(canvasW, y, tipo, crop, ctx, canvasH)
         super.setDX(20) //¿para que se desplace de forma senoidal tengo que añadir el coseno de x a la velocidad?
 
-        const y = 300; //logicamente jugador no esta definido en esta linea. 
+        // const y = 300; //logicamente jugador no esta definido en esta linea. 
         const img = new Image();
 
         img.src = `assets/img/enemigo${tipo}.png`
