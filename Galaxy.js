@@ -1,6 +1,15 @@
 window.onload = function () {
 
-confirm("DISPARO = Ctrl \n MOVERSE = Flechas Arriba/Abajo\n ACTIVAR MUSICA = M")
+  Swal.fire({
+    title: 'GALAXY GAME \n (Rubén R. Ganga)',
+    html: 
+      '<b>FIRE!</b> = Ctrl<br><b>MOVE</b> = Arrow Up/Down<br><b>MUSIC ON</b> = M - <b>MUSIC OFF</b> = N',
+    icon: 'info',
+    iconColor: '',
+    confirmButtonText: 'OK!',
+    footer: '<a href="https://github.com/RubenRGanga/Galaxy-Game" target="_blank">VIEW GIT REPOSITORY!</a>',
+  }).then ((result) => {
+
 
 let reproducir = false;
 let musica = new Audio("assets/snd/DUST.mp3");
@@ -16,11 +25,7 @@ function resumeAudio () {
   if (!reproducir) {
     reproducir = true;
     musica.play();
-  }
-}
-
-function pauseAudio () {
-  if (reproducir) {
+  } else if (reproducir) {
     reproducir = false;
     musica.pause();
   }
@@ -34,9 +39,9 @@ function teclado(objeto) {
       case 77: //m
         resumeAudio();
         break;
-      case 78: //n
-        pauseAudio();
-        break;
+      // case 77: //m
+      //   pauseAudio();
+      //   break;
   }
 
 }
@@ -44,4 +49,5 @@ function teclado(objeto) {
 document.addEventListener('keydown', teclado, false);
    
     Game.init()
+  })
 }

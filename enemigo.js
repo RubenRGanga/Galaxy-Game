@@ -67,13 +67,25 @@ class Enemigo {
             this.arrEnemigos = arrEnemigos;
             this.derribado = true;
             this.sonidoExplosion.play();
-            this.img.frames = 11 //Frames animación explosión.
+            this.img.frames = 12 //Frames animación explosión.
             this.img.frameIndex = 0 //En que frame empieza la animación.
             this.img.h = 20 //No me acepta este parametro como tamaño del sprite.
             this.img.w = 20 //No me acepta este parametro como tamaño del sprite.
             
             this.img.src = `assets/img/explosion.png`
-        }
+
+             // Guardar una referencia al objeto `this` en una variable
+            const self = this;
+
+            // Crear una función para detener la animación después de una reproducción
+            function detenerAnimacion() {
+                self.img.frameIndex = self.img.frames - 1;
+                self.animateImg = function() {};
+            }
+
+            // Ejecutar la función `detenerAnimacion()` después de la animación
+            setTimeout(detenerAnimacion, this.img.frames * 80);
+            }
     }
 
     
@@ -153,24 +165,46 @@ class NaveSupersonica extends Nave {
 }
 
 // ENEMIGO > MINA
-class Mina extends Enemigo {
-    constructor(canvasW, canvasH, ctx, playerY) {
-        const w = 40;
-        const h = 40;
-        const tipo = 3;
-        const crop = canvasH * .1;
-        const y = playerY + h /2;
-        
-        super(canvasW, y, tipo, crop, ctx, canvasH)
-        super.setDX(20) //¿para que se desplace de forma senoidal tengo que añadir el coseno de x a la velocidad?
 
-        // const y = 300; //logicamente jugador no esta definido en esta linea. 
-        const img = new Image();
+// class Mina extends Enemigo {
+//     constructor(canvasW, canvasH, tipo, playerY, crop, ctx, w, h) {
+//       const w = 20;
+//       const h = 20;
+      
+//       const y = playerY + h / 2;
+//       const img = new Image();
 
-        img.src = `assets/img/enemigo${tipo}.png`
-        img.frames = 3
-        img.frameIndex = 0
+//       const tipo = 3;
+//       img.src = `assets/img/enemigo${tipo}.png`;
+//       img.frames = 3;
+//       img.frameIndex = 0;
+
+//       super(canvasW, y, w, h, img, ctx);
+
+//       const x = canvasW;
+      
+//       super.setDX(20);
+//     }
+//   }
+
+// class Mina extends Enemigo {
+//     constructor(canvasW, canvasH, ctx, playerY) {
+//         const w = 40;
+//         const h = 40;
+//         const tipo = 3;
+//         const crop = canvasH * .1;
+//         const y = playerY + h /2;
         
-    }
+//         super(canvasW, y, tipo, crop, ctx, canvasH)
+//         super.setDX(20) //¿para que se desplace de forma senoidal tengo que añadir el coseno de x a la velocidad?
+
+//         // const y = 300; //logicamente jugador no esta definido en esta linea. 
+//         const img = new Image();
+
+//         img.src = `assets/img/enemigo${tipo}.png`
+//         img.frames = 3
+//         img.frameIndex = 0
+        
+//     }
     
-}
+// }

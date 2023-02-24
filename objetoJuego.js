@@ -133,6 +133,7 @@ const Game = {  undefined,
     esColision: function(){
         return this.enemigos.some(enemigo => {
             return (
+                !enemigo.derribado &&
                 this.jugador.y <= enemigo.y + enemigo.h*0.75 &&
                 this.jugador.x + this.jugador.w*0.75 >= enemigo.x &&
                 this.jugador.y + this.jugador.h*0.75 >= enemigo.y
@@ -191,13 +192,20 @@ const Game = {  undefined,
 
 //GAME OVER.
 
-    gameOver: function(){
-        this.stop();
-        if (confirm("GAME OVER \n NO HAS DEFENDIDO TU PLANETA \n ¿VOLVER A INTENTARLO?")) {
-            this.reset();
-            this.start();
-        }
-    },
+gameOver: async function(){
+    this.stop();
+    await Swal.fire({
+        title: 'GAME OVER',
+        html: `You haven't defend your planet!`,
+        icon: 'error',
+        iconColor: '',
+        confirmButtonText: 'TRY AGAIN!',
+        footer: '<a href="https://drive.google.com/file/d/1rfAMUeZcgVjSpDWC50vTgHxsL39iPaDF/view?usp=share_link" target="_blank">SEE MY CV!</a>',
+        toast: true
+    });
+    this.reset();
+    this.start();
+}
 
     // drawScore: function() {
     //     this.scoreBoard.update(this.score)
