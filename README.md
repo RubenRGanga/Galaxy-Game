@@ -1,7 +1,8 @@
 # Galaxy-Game
 
--SPANISH-
-Galaxy fue creado por Rubén R. Ganga como un proyecto de clase para aplicar lo aprendido en lógica de programación utilizando JavaScript Vanilla y CANVAS, con un fuerte componente de programación orientada a objetos (POO).
+<b>- SPANISH -</b><br><br>
+Galaxy fue creado por <b>Rubén R. Ganga</b> como un proyecto de clase para aplicar lo aprendido en lógica de programación utilizando <b>JavaScript Vanilla</b>
+ y <b>CANVAS</b>, con un fuerte componente de programación orientada a objetos (<b>POO</b>).
 
 Para probarlo, simplemente puedes descargar el repositorio y ejecutar el archivo Galaxy.html.
 
@@ -11,10 +12,10 @@ Algunos de los recursos gráficos, como las naves y explosiones, fueron diseñad
 
 El fin de este proyecto es simplemente mostrar mis capacidades con JavaScript Vanilla, Canvas y programación orientada a objetos.
 
+_______________________________________________________________________________________________________________________________________________________________________
 
-
--ENGLISH-
-Galaxy was created by Rubén R. Ganga as a class project to apply what was learned in logic programming using JavaScript Vanilla and CANVAS, with a strong component of object-oriented programming (OOP).
+<b>- ENGLISH -</b><br><br>
+Galaxy was created by <b>Rubén R. Ganga</b> as a class project to apply what was learned in logic programming using <b>JavaScript Vanilla</b> and <b>CANVAS</b>, with a strong component of object-oriented programming (<b>OOP</b>).
 
 To try it out, you can simply download the repository and run the Galaxy.html file.
 
