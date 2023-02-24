@@ -11,6 +11,5 @@ Algunos de los recursos graficos como las naves y explosiones fueron diseñadas 
 libre uso en unos casos o desde cero en otros. El fondo fue adquirido en una pagina de stock de imagenes que no recuerdo pero animado por mi para
 obtener el efecto parallax, la musica es DUST de M.O.O.N., los sonidos son descargados de libre uso.
 
-El fin de este proyecto es meramente como muestra de mis capacidades con JavaScript Vanilla, Canvas y programación orientada a objetos, su intención es
-meramente educativa. 
+El fin de este proyecto es meramente como muestra de mis capacidades con JavaScript Vanilla, Canvas y programación orientada a objetos.
 
