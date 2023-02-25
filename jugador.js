@@ -17,8 +17,8 @@ class Jugador {
         this.img.frames = 3;
         this.img.frameIndex = 0;
 
-        this.w = 150;
-        this.h = 45;
+        this.w = 150; //Anchura de la nave.
+        this.h = 45;  //Altura de la nave.
     
         this.vy = 1;
         
