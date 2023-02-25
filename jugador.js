@@ -12,31 +12,30 @@ class Jugador {
         this.y = this.y0;
 
         this.img = new Image();
-        this.img.src = "assets/img/nave4.png";
+        this.img.src = "assets/img/nave.png";
 
         this.img.frames = 3;
         this.img.frameIndex = 0;
 
-        this.w = 200;
-        this.h = 60;
+        this.w = 150;
+        this.h = 45;
     
         this.vy = 1;
         
         this.setListener()
         this.dy = 0;
 
-        
         this.topLimit = this.canvasH * 0.03;
         this.bottomLimit = this.canvasH - this.h - this.topLimit;
 
         this.bullets = []
 
         this.sonidoLaser = new Audio('assets/snd/fire.wav');
-
-   
-
+        this.sonidoExplosion = new Audio('assets/snd/blast.wav');
     
     }
+
+    //CONTROLES
 
     setListener(){
         
@@ -55,8 +54,6 @@ class Jugador {
                     }
 
         }.bind(this) 
-
-        
 
         document.onkeyup = function(event){
             if (event.keyCode === this.keys.ARROW_UP){

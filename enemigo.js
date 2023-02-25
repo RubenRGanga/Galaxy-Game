@@ -95,8 +95,8 @@ class Enemigo {
 
 class Nave extends Enemigo {
     constructor(canvasW, canvasH, tipo, crop, ctx) {
-        const w = 200;
-        const h = 60;
+        const w = 150;
+        const h = 45;
 
         const y = randomInt(0 + crop, canvasH - h - crop)
         const img = new Image();
