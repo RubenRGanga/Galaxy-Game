@@ -16,7 +16,6 @@ const Game = {  undefined,
 
     init: function () {
         this.canvas = document.getElementById('canvas')
-        //https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext
         this.ctx = canvas.getContext('2d');
 
         // ScoreBoard.init(this.ctx);
@@ -49,7 +48,7 @@ const Game = {  undefined,
             this.limpiaEnemigo()
            
             if (this.esColision() || this.isDamage())
-                this.gameOver()
+                this.gameOverWithDelay()
             this.esDiana() && console.log(++this.score)
 
             // this.ScoreBoard = {
@@ -191,6 +190,12 @@ const Game = {  undefined,
     },
 
 //GAME OVER.
+
+gameOverWithDelay: function(){
+    setTimeout(() => {
+        this.gameOver();
+    }, 100);
+},
 
 gameOver: async function(){
     this.stop();
