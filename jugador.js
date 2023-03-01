@@ -11,6 +11,8 @@ class Jugador {
         
         this.y = this.y0;
 
+        this.derribado = false;
+
         this.img = new Image();
         this.img.src = "assets/img/nave.png";
 
@@ -46,11 +48,11 @@ class Jugador {
             else if (event.keyCode === this.keys.ARROW_DOWN){
                 this.dy = -4;
             }
-            else if (event.keyCode === this.keys.CONTROL && !this.isFiring){ // verifica si la tecla de control no se está manteniendo pulsada actualmente
+            else if (event.keyCode === this.keys.CONTROL && !this.isFiring){ //Verifica si la tecla de control no se está manteniendo pulsada actualmente.
                 
                 this.fire();
                 this.sonidoLaser.play();
-                this.isFiring = true; // establece la variable de estado en verdadero para indicar que el jugador está disparando actualmente
+                this.isFiring = true; //Establece la variable de estado en verdadero para indicar que el jugador está disparando actualmente.
             }
     
         }.bind(this);
@@ -63,42 +65,12 @@ class Jugador {
                 this.dy = 0;
             }
             else if (event.keyCode === this.keys.CONTROL){
-                this.isFiring = false; // establece la variable de estado en falso cuando se suelta la tecla de control
+                this.isFiring = false; //Establece la variable de estado en falso cuando se suelta la tecla de disparo.
             }
         }.bind(this);
     
     }
-    
-
-    // setListener(){
-        
-    //     document.onkeydown = function(event){
-    //         if (event.keyCode === this.keys.ARROW_UP){
-    //             this.dy = 4
-    //             }
-    //             else if (event.keyCode === this.keys.ARROW_DOWN){
-    //             this.dy = -4
-    //            }
-    //                 else if (event.keyCode === this.keys.CONTROL){
-            
-    //                 this.fire()
-    //                 this.sonidoLaser.play();
-                    
-    //                 }
-
-    //     }.bind(this) 
-
-    //     document.onkeyup = function(event){
-    //         if (event.keyCode === this.keys.ARROW_UP){
-    //             this.dy = 0
-    //             }
-    //             else if (event.keyCode === this.keys.ARROW_DOWN){
-    //             this.dy = 0
-    //             }
-    //     }.bind(this) 
-
-    // }
-    
+   
 
     dibujar(sumarFrames){
         this.ctx.drawImage(
@@ -150,7 +122,22 @@ class Jugador {
         if (this.img.frameIndex > 2) this.img.frameIndex = 0;
     }
 
-
+    explotar() {
+        if (!this.derribado) {
+          this.derribado = true;
+          this.sonidoExplosion.play();
+          this.img.frames = 12;
+          this.img.frameIndex = 0;
+          this.img.src = `assets/img/explosion.png`;
+          const self = this;
+          function detenerAnimacion() {
+            self.img.frameIndex = self.img.frames - 1;
+            self.animateImg = function() {};
+          }
+          setTimeout(detenerAnimacion, this.img.frames * 120);
+        }
+      }
+      
 
     fire() {
         let bullet = new Laser(
