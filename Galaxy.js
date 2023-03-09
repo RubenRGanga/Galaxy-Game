@@ -1,7 +1,7 @@
 window.onload = function () {
 
   Swal.fire({
-    title: 'GALAXY GAME \n (Rubén R. Ganga)',
+    title: 'GALAXY GAME \n (Ruben R. Ganga)',
     html: 
       'For a better experience, recommend run the game on Chrome in full-screen mode (<b>Press F11</b>).<br><br><b>FIRE!</b> = Ctrl<br><b>MOVE</b> = Arrow Up/Down<br><b>MUSIC ON</b> = M - <b>MUSIC OFF</b> = N',
     icon: 'info',

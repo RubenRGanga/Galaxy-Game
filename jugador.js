@@ -116,10 +116,16 @@ class Jugador {
 
     animarImg(sumarFrames){
 
-        if (sumarFrames % 6 === 0){
-            this.img.frameIndex++;
-        }
-        if (this.img.frameIndex > 2) this.img.frameIndex = 0;
+        if (!this.derribado) {
+            if (sumarFrames % 6 === 0){
+                this.img.frameIndex++;
+            }
+            if (this.img.frameIndex > 2) this.img.frameIndex = 0;
+            }
+
+            else if (this.derribado) {
+                
+            }
     }
 
     explotar() {
@@ -134,7 +140,7 @@ class Jugador {
             self.img.frameIndex = self.img.frames - 1;
             self.animateImg = function() {};
           }
-          setTimeout(detenerAnimacion, this.img.frames * 120);
+          setTimeout(detenerAnimacion, this.img.frames * 1);
         }
       }
       

@@ -47,12 +47,10 @@ const Game = {  undefined,
             this.limpiaEnemigo()
            
             if (this.esColision() || this.isDamage())
+                // this.handleGameOver()
                 this.gameOverWithDelay()
-            // setTimeout(() => {
-            //     if (this.esColision() || this.isDamage()) {
-            //       this.gameOverWithDelay();
-            //     }
-            //   }, 1000);
+                // this.gameOver()
+
             this.esDiana() && console.log(++this.score)
 
         }, 1000 / this.fps)
@@ -115,51 +113,19 @@ const Game = {  undefined,
         this.enemigos = this.enemigos.filter((enemigo) => enemigo.x >= 0)
     },
 
-// // COLISIONES ENTRE ENEMIGO Y JUGADOR
-//     esColision: function() {
-//         return this.enemigos.some(enemigo => {
-//             return (
-//                 !enemigo.derribado &&
-//                 this.jugador.y <= enemigo.y + enemigo.h * 0.75 &&
-//                 this.jugador.x + this.jugador.w * 0.75 >= enemigo.x &&
-//                 this.jugador.y + this.jugador.h * 0.75 >= enemigo.y
-//             );
-//         }) && 
-//         this.jugador && this.jugador instanceof Jugador && 
-//         this.jugador.explotar(this.enemigos);
-//     },
-
 //COLISIONES ENTRE ENEMIGO Y JUGADOR
 
-esColision: function(){
-    return this.enemigos.some(enemigo => {
-        return (
-            !enemigo.derribado &&
-            this.jugador.y <= enemigo.y + enemigo.h*0.75 &&
-            this.jugador.x + this.jugador.w*0.75 >= enemigo.x &&
-            this.jugador.y + this.jugador.h*0.75 >= enemigo.y
-            // && this.jugador.x <= enUno.x + enUno.w
-        )
-    })
+    esColision: function(){
+        return this.enemigos.some(enemigo => {
+            return (
+                !enemigo.derribado &&
+                this.jugador.y <= enemigo.y + enemigo.h*0.75 &&
+                this.jugador.x + this.jugador.w*0.75 >= enemigo.x &&
+                this.jugador.y + this.jugador.h*0.75 >= enemigo.y
+                // && this.jugador.x <= enUno.x + enUno.w
+            )
+        })
 },
-
-// // COLISIÓN ENTRE DISPARO ENEMIGO Y JUGADOR
-//     isDamage: function() {
-//         return this.enemigos.some(enemigo => {
-//             if (!(enemigo instanceof Nave)) return false;
-//             return enemigo.bullets.some(laser => {
-//                 return (
-//                     laser.y <= this.jugador.y + this.jugador.h &&
-//                     laser.x <= this.jugador.x + this.jugador.w - 80 &&
-//                     laser.x + laser.laserW >= this.jugador.x &&
-//                     laser.y + laser.laserH >= this.jugador.y
-//                 );
-//             });
-//         }) && 
-//         this.jugador && this.jugador instanceof Jugador && 
-//         this.jugador.explotar(this.enemigos);
-//     },
-
 
 //COLISIÓN ENTRE DISPARO ENEMIGO Y JUGADOR
 
@@ -212,9 +178,10 @@ esColision: function(){
 //GAME OVER.
 
 gameOverWithDelay: function(){
+    this.jugador.explotar();
     setTimeout(() => {
         this.gameOver();
-    }, 100);
+    }, 1300);
 },
 
 gameOver: async function(){
