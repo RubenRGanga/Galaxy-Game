@@ -36,7 +36,7 @@ const Game = {  undefined,
                 this.generaEnemigo("NaveSupersonica") 
             }
 
-            if (this.sumarFrames % 400 === 0) {
+            if (this.sumarFrames % 150 === 0) {
                 this.generaEnemigo("Mina")
             }
 
@@ -73,7 +73,6 @@ const Game = {  undefined,
     },
 
     moverTodo: function(){
-        // console.log("M")
         this.fondo.movimiento()
         this.fondo1.movimiento()
         this.fondo2.movimiento()

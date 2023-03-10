@@ -190,21 +190,51 @@ class NaveSupersonica extends Nave {
     }
 }
 
-// ENEMIGO > MINA
-class Mina extends Enemigo {
-    constructor(canvasW, canvasH, tipo, ctx) {
+// ENEMIGO > PROYECTIL
+
+class Proyectil extends Enemigo {
+    constructor(canvasW, canvasH, tipo, crop, ctx) {
         const w = 25;
         const h = 25;
 
-        const y = PlayerY = Jugador.y;
+        const y = randomInt(0 + crop, canvasH - h - crop)
+        // const y = Jugador.y0;
         const img = new Image();
 
-        img.src = 'assets/img/enemigo3.png'
+        img.src = `assets/img/enemigo${tipo}.png`
         img.frames = 3
         img.frameIndex = 0
 
         super(canvasW, y, w, h, img, ctx)
-        super.setDX(20)
-        
+       
     }
+
+}
+
+// ENEMIGO > PROYECTIL > MINA
+class Mina extends Proyectil {
+    constructor(canvasW, canvasH, ctx) {
+        const tipo = 3;
+        const crop = canvasH * .1;
+
+        super(canvasW, canvasH, tipo, crop, ctx)
+        super.setDX(10) 
+
+    //     //CÓDIGO NUEVO
+    //     this.amplitude = 40; // amplitud de la oscilación en Y
+    //     this.frequency = 0.1; // frecuencia de la oscilación en Y
+    //     this.initialY = this.y; // posición inicial en Y
+    //     this.time = 0.1; // tiempo inicial para la oscilación en Y
+        
+    // }
+
+    // update() {
+    //     super.update();
+
+    //     // calcula la nueva posición en Y de la mina usando una función senoidal
+    //     this.y = this.initialY + this.amplitude * Math.sin(this.frequency * this.time);
+
+    //     this.time++; // actualiza el tiempo para la oscilación en Y
+    }
+
 }

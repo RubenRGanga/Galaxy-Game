@@ -47,15 +47,15 @@ class Jugador {
                 if (event.keyCode === this.keys.ARROW_UP && !this.derribado){
                     this.dy = 4;
                 }
-                else if (event.keyCode === this.keys.ARROW_DOWN && !this.derribado){
-                    this.dy = -4;
-                }
-                else if (event.keyCode === this.keys.CONTROL && !this.isFiring && !this.derribado){ //Verifica si la tecla de control no se está manteniendo pulsada actualmente.
-                    
-                    this.fire();
-                    this.sonidoLaser.play();
-                    this.isFiring = true; //Establece la variable de estado en verdadero para indicar que el jugador está disparando actualmente.
-                }
+                    else if (event.keyCode === this.keys.ARROW_DOWN && !this.derribado){
+                        this.dy = -4;
+                    }
+                        else if (event.keyCode === this.keys.CONTROL && !this.isFiring && !this.derribado){ //Verifica si la tecla de control no se está manteniendo pulsada actualmente.
+                            
+                            this.fire();
+                            this.sonidoLaser.play();
+                            this.isFiring = true; //Establece la variable de estado en verdadero para indicar que el jugador está disparando actualmente.
+                        }
         
             }.bind(this);
         
@@ -63,12 +63,12 @@ class Jugador {
                 if (event.keyCode === this.keys.ARROW_UP){
                     this.dy = 0;
                 }
-                else if (event.keyCode === this.keys.ARROW_DOWN){
-                    this.dy = 0;
-                }
-                else if (event.keyCode === this.keys.CONTROL){
-                    this.isFiring = false; //Establece la variable de estado en falso cuando se suelta la tecla de disparo.
-                }
+                    else if (event.keyCode === this.keys.ARROW_DOWN){
+                        this.dy = 0;
+                    }
+                        else if (event.keyCode === this.keys.CONTROL){
+                            this.isFiring = false; //Establece la variable de estado en falso cuando se suelta la tecla de disparo.
+                        }
             }.bind(this);
         
         }
