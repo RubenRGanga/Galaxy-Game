@@ -69,8 +69,6 @@ class Enemigo {
             this.sonidoExplosion.play();
             this.img.frames = 12 //Frames animación explosión.
             this.img.frameIndex = 0 //En que frame empieza la animación.
-            this.img.h = 20 //No me acepta este parametro como tamaño del sprite.
-            this.img.w = 20 //No me acepta este parametro como tamaño del sprite.
             
             this.img.src = `assets/img/explosion.png`
 

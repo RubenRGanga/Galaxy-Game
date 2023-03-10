@@ -181,7 +181,7 @@ gameOverWithDelay: function(){
     this.jugador.explotar();
     setTimeout(() => {
         this.gameOver();
-    }, 1300);
+    }, 1000);
 },
 
 gameOver: async function(){
