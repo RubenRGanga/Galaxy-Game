@@ -36,7 +36,7 @@ const Game = {  undefined,
                 this.generaEnemigo("NaveSupersonica") 
             }
 
-            if (this.sumarFrames % 150 === 0) {
+            if (this.sumarFrames % 120 === 0) {
                 this.generaEnemigo("Mina")
             }
 
@@ -99,9 +99,9 @@ const Game = {  undefined,
 
 //ENEMIGO
     
-    generaEnemigo: function(tipo, playerY = undefined) {
+    generaEnemigo: function(tipo, jugadorY = undefined) {
             this.enemigos.push(
-                new (eval(tipo))(this.canvas.width, this.canvas.height, this.ctx, playerY)
+                new (eval(tipo))(this.canvas.width, this.canvas.height, this.ctx, jugadorY)
             )  
     },
 

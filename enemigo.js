@@ -198,7 +198,6 @@ class Proyectil extends Enemigo {
         const h = 25;
 
         const y = randomInt(0 + crop, canvasH - h - crop)
-        // const y = Jugador.y0;
         const img = new Image();
 
         img.src = `assets/img/enemigo${tipo}.png`
@@ -218,23 +217,17 @@ class Mina extends Proyectil {
         const crop = canvasH * .1;
 
         super(canvasW, canvasH, tipo, crop, ctx)
-        super.setDX(10) 
+        super.setDX(10)
 
-    //     //CÓDIGO NUEVO
-    //     this.amplitude = 40; // amplitud de la oscilación en Y
-    //     this.frequency = 0.1; // frecuencia de la oscilación en Y
-    //     this.initialY = this.y; // posición inicial en Y
-    //     this.time = 0.1; // tiempo inicial para la oscilación en Y
-        
-    // }
-
-    // update() {
-    //     super.update();
-
-    //     // calcula la nueva posición en Y de la mina usando una función senoidal
-    //     this.y = this.initialY + this.amplitude * Math.sin(this.frequency * this.time);
-
-    //     this.time++; // actualiza el tiempo para la oscilación en Y
+        this.amplitud = 5; // Amplitud del movimiento senoidal
+        this.periodo = 1200; // Periodo del movimiento senoidal en milisegundos
+        this.tiempoInicio = Date.now(); // Tiempo en el que se inició el movimiento
     }
 
+    movimiento() {
+        super.movimiento(); // Movimiento horizontal lineal
+        const tiempoTranscurrido = Date.now() - this.tiempoInicio; // Calcular tiempo transcurrido desde el inicio del movimiento
+        const desplazamientoVertical = Math.sin(tiempoTranscurrido / this.periodo * 2 * Math.PI) * this.amplitud; // Calcular desplazamiento vertical en función de la función seno
+        this.y += desplazamientoVertical; // Modificar la posición vertical
+    }
 }
