@@ -111,8 +111,21 @@ class Nave extends Enemigo {
        
     }
 
-    dispara (sumarFrame) {
-        if(!this.derribado && sumarFrame % 125 === 0) { //Cadencia de disparo enemigo.
+}
+
+// ENEMIGO > NAVE > METRALLA
+class NaveMetralla extends Nave {
+    constructor(canvasW, canvasH, ctx) {
+        const tipo = 1;
+        const crop = canvasH * .1;
+
+        super(canvasW, canvasH, tipo, crop, ctx)
+        super.setDX(5)
+        
+    }
+
+    dispara (sumarFrames) {
+        if(!this.derribado && sumarFrames % 90 === 0) { //Cadencia de disparo enemigo.
             
             this.sonidoLaserEnemigo.play();
             
@@ -126,6 +139,7 @@ class Nave extends Enemigo {
 
             bullet.vel_x = -10; //Velocidad del disparo enemigo.
             this.bullets.push(bullet)
+
         }
             
         this.bullets = this.bullets.filter((b) => b.x > 0 )
@@ -137,72 +151,60 @@ class Nave extends Enemigo {
     }
 }
 
-// ENEMIGO > NAVE > METRALLA
-class NaveMetralla extends Nave {
-    constructor(canvasW, canvasH, ctx) {
-        const tipo = 1;
-        const crop = canvasH * .1;
-     
-        
-        super(canvasW, canvasH, tipo, crop, ctx)
-        super.setDX(5)
-        
-    }
-}
-
 // ENEMIGO > NAVE > SUPERSONICA
 class NaveSupersonica extends Nave {
     constructor(canvasW, canvasH, ctx) {
         const tipo = 2;
         const crop = canvasH * .2;
+        
 
         super(canvasW, canvasH, tipo,crop, ctx)
-        super.setDX(7)
+        super.setDX(9)
         
+    }
+
+    dispara (sumarFrames) {
+        if(!this.derribado && sumarFrames % 125 === 0) { //Cadencia de disparo enemigo.
+            
+            this.sonidoLaserEnemigo.play();
+            
+            const bullet = new Laser(
+                this.x,
+                this.y + this.h / 2,
+                this.ctx,
+                randomInt(-10, -1),
+                "1" + randomInt(1, 9) //Skin del disparo enemigo.
+                )
+
+            bullet.vel_x = -16; //Velocidad del disparo enemigo.
+            this.bullets.push(bullet)
+
+        }
+            
+        this.bullets = this.bullets.filter((b) => b.x > 0 )
+
+        this.bullets.forEach((b) => {
+            b.dibujar();
+            b.movimientoDisparo();
+        }) 
     }
 }
 
 // ENEMIGO > MINA
+class Mina extends Enemigo {
+    constructor(canvasW, canvasH, tipo, ctx) {
+        const w = 25;
+        const h = 25;
 
-// class Mina extends Enemigo {
-//     constructor(canvasW, canvasH, tipo, playerY, crop, ctx, w, h) {
-//       const w = 20;
-//       const h = 20;
-      
-//       const y = playerY + h / 2;
-//       const img = new Image();
+        const y = PlayerY = Jugador.y;
+        const img = new Image();
 
-//       const tipo = 3;
-//       img.src = `assets/img/enemigo${tipo}.png`;
-//       img.frames = 3;
-//       img.frameIndex = 0;
+        img.src = 'assets/img/enemigo3.png'
+        img.frames = 3
+        img.frameIndex = 0
 
-//       super(canvasW, y, w, h, img, ctx);
-
-//       const x = canvasW;
-      
-//       super.setDX(20);
-//     }
-//   }
-
-// class Mina extends Enemigo {
-//     constructor(canvasW, canvasH, ctx, playerY) {
-//         const w = 40;
-//         const h = 40;
-//         const tipo = 3;
-//         const crop = canvasH * .1;
-//         const y = playerY + h /2;
+        super(canvasW, y, w, h, img, ctx)
+        super.setDX(20)
         
-//         super(canvasW, y, tipo, crop, ctx, canvasH)
-//         super.setDX(20) //¿para que se desplace de forma senoidal tengo que añadir el coseno de x a la velocidad?
-
-//         // const y = 300; //logicamente jugador no esta definido en esta linea. 
-//         const img = new Image();
-
-//         img.src = `assets/img/enemigo${tipo}.png`
-//         img.frames = 3
-//         img.frameIndex = 0
-        
-//     }
-    
-// }
+    }
+}

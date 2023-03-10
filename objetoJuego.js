@@ -36,9 +36,9 @@ const Game = {  undefined,
                 this.generaEnemigo("NaveSupersonica") 
             }
 
-            // if (this.sumarFrames % 400 === 0) {
-            //     this.generaEnemigo("Mina")
-            // }
+            if (this.sumarFrames % 400 === 0) {
+                this.generaEnemigo("Mina")
+            }
 
             this.moverTodo(); 
             this.pintarTodo();
@@ -47,9 +47,7 @@ const Game = {  undefined,
             this.limpiaEnemigo()
            
             if (this.esColision() || this.isDamage())
-                // this.handleGameOver()
                 this.gameOverWithDelay()
-                // this.gameOver()
 
             this.esDiana() && console.log(++this.score)
 

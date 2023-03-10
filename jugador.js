@@ -164,7 +164,6 @@ class Jugador {
             const self = this;
             function detenerAnimacion() {
                 self.img.frameIndex = self.img.frames - 1;
-                self.img.src = `assets/img/transparente.png`;
                 self.animateImg = function() {};
             }
             setTimeout(detenerAnimacion, this.img.frames * 120);
