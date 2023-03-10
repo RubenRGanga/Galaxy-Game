@@ -194,14 +194,14 @@ class NaveSupersonica extends Nave {
 
 class Proyectil extends Enemigo {
     constructor(canvasW, canvasH, tipo, crop, ctx) {
-        const w = 25;
-        const h = 25;
+        const w = 35;
+        const h = 35;
 
         const y = randomInt(0 + crop, canvasH - h - crop)
         const img = new Image();
 
-        img.src = `assets/img/enemigo${tipo}.png`
-        img.frames = 3
+        img.src = `assets/img/mina.png`
+        img.frames = 4
         img.frameIndex = 0
 
         super(canvasW, y, w, h, img, ctx)
@@ -217,7 +217,7 @@ class Mina extends Proyectil {
         const crop = canvasH * .1;
 
         super(canvasW, canvasH, tipo, crop, ctx)
-        super.setDX(10)
+        super.setDX(13)
 
         this.amplitud = 5; // Amplitud del movimiento senoidal
         this.periodo = 1200; // Periodo del movimiento senoidal en milisegundos
