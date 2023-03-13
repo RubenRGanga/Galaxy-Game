@@ -1,7 +1,6 @@
 //LOGGING
 
 const winston = require('winston')
-require('winston-mongodb');
 
 module.exports = function () {
     winston.add(new winston.transports.File({filename: 'logs/errors.log', level: "error"}))
@@ -19,7 +18,5 @@ module.exports = function () {
     winston.exceptions.handle(
         new winston.transports.File({ filename: 'logs/exceptions.log', exitOnError: true })
     );
-    
-    winston.add(new winston.transports.MongoDB({db: process.env.MONGO_URI, collection : 'nasa_DB',
-    level : 'error'}));
+
 }

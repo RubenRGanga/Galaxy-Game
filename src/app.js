@@ -11,10 +11,11 @@ const app = express();
 
 require('./startup/logging')()
 require('./startup/routes')(app)
+// require('./startup/db')()
 
-//ARCHIVOS ESTATICOS
+//ARCHIVOS ESTATICOS --- (NO HE CONSEGUIDO QUE CARGUEN DESDE "src/startup/routes.js")
 
-app.use('/', express.static(path.join(__dirname, 'Galaxy')))
+app.use('/', express.static(path.join(__dirname, 'public')))
 
 //PUERTO DE ESCUCHA
 

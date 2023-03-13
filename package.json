@@ -1,21 +1,21 @@
 {
-  "name": "Galaxy",
+  "name": "galaxy",
   "version": "1.0.0",
   "description": "Juego de naves de scroll lateral programado con JS Vanilla, y Canvas.",
-  "main": "Galaxy.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RubenRGanga/Galaxy-Game"
+    "url": "git+https://github.com/RubenRGanga/Back_NasaAPI.git"
   },
   "author": "Rubén R. Ganga",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RubenRGanga/Galaxy-Game/issues"
+    "url": "https://github.com/RubenRGanga/Back_NasaAPI/issues"
   },
-  "homepage": "https://github.com/RubenRGanga/Galaxy-Game#readme",
+  "homepage": "https://github.com/RubenRGanga/Back_NasaAPI#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
