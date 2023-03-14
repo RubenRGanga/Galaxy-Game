@@ -1,12 +1,14 @@
 window.onload = function () {
 
   Swal.fire({
-    title: 'GALAXY GAME \n (Ruben R. Ganga)',
-    html: 
-      'For a better experience, recommend run the game on Chrome in full-screen mode (<b>Press F11</b>).<br><br><b>FIRE!</b> = Ctrl<br><b>MOVE</b> = Arrow Up/Down<br><b>MUSIC ON</b> = M - <b>MUSIC OFF</b> = N',
-    icon: 'info',
-    iconColor: '',
+    allowEnterKey: true,
+    background: '#212121',
+    imageUrl: 'assets/img/init.png',
+    backdrop: false,
+    imageWidth: 280,
+    imageAlt: 'Controls img',
     confirmButtonText: 'OK!',
+    confirmButtonColor: '#7d1282',
     footer: '<a href="https://github.com/RubenRGanga/Galaxy-Game" target="_blank">VIEW GIT REPOSITORY!</a>',
   }).then ((result) => {
 

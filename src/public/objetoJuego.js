@@ -185,13 +185,16 @@ gameOver: async function(){
     this.stop();
     const points = Math.floor(this.sumarFrames/60 + this.score*100);
     await Swal.fire({
-        title: 'GAME OVER',
-        html: `You haven't defended your planet!<br> Your score is ${points} points.`,
-        icon: 'error',
-        iconColor: '',
+        width: 400,
+        allowEnterKey: true,
+        background: '#212121',
+        backdrop: false,
+        imageUrl: 'assets/img/gameover.png',
+        html: `Your score is ${points} points.`,
+        confirmButtonColor: '#7d1282',
         confirmButtonText: 'TRY AGAIN!',
         footer: '<a href="https://drive.google.com/file/d/1rfAMUeZcgVjSpDWC50vTgHxsL39iPaDF/view?usp=share_link" target="_blank">SEE MY CV!</a>',
-        toast: true
+        // toast: true
     });
     this.reset();
     this.start();
