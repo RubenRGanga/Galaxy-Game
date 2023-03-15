@@ -59,6 +59,9 @@ const Game = {  undefined,
     reset: function(){
         this.fondo = new Fondo(this.canvas.width, this.canvas.height, this.ctx)
         this.sumarFrames = 0 //frameCounter 
+
+        this.fondoB = new FondoB(this.canvas.width, this.canvas.height, this.ctx)
+
         this.fondo1 = new Fondo1(this.canvas.width, this.canvas.height, this.ctx)
         
         this.fondo2 = new Fondo2(this.canvas.width, this.canvas.height, this.ctx)
@@ -76,6 +79,7 @@ const Game = {  undefined,
 
     moverTodo: function(){
         this.fondo.movimiento()
+        this.fondoB.movimiento()
         this.fondo1.movimiento()
         this.fondo2.movimiento()
         this.fondo3.movimiento()
@@ -86,6 +90,7 @@ const Game = {  undefined,
     },
     pintarTodo: function(){
         this.fondo.dibujar()
+        this.fondoB.dibujar()
         this.fondo4.dibujar()
         this.fondo3.dibujar()
         this.fondo2.dibujar()

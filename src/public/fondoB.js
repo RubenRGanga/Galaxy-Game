@@ -1,15 +1,15 @@
-class Fondo{ //background
+class FondoB{ //background
     constructor(w, h, ctx){//establece los nombres de los valores para el constructor
         this.w = w;
         this.h = h;
         this.ctx = ctx;
         //Instancia una nueva imagen y establece la imagen con .src .
         this.img = new Image(); 
-        this.img.src = "assets/img/parallax-mountain-bg.png"
+        this.img.src = "assets/img/fondo_b.png"
         this.x = 0 //situa la imagen en el eje X e Y
         this.y = 0
         
-        this.dx = 0.04 //Establece los pixeles que se desplaza dando la sensación de movimiento. 
+        this.dx = 0.1 //Establece los pixeles que se desplaza dando la sensación de movimiento. 
     }
 
     dibujar(){ //draw
