@@ -218,12 +218,14 @@ gameOver: async function(){
 const ScoreBoard = {
     ctx: undefined,
     init: function(ctx) {
-        ctx.font = "30px 'Gameplay', sans-serif"
+        ctx.font = "25px 'Gameplay', sans-serif"
         this.ctx = ctx;
     },
     update: function(score) {
-        this.ctx.fillStyle = "black";
-        this.ctx.fillText(Math.floor(score), 50 , 50)
+        // this.ctx.fillStyle = "rgb(16, 236, 160, 0.5)";
+        // this.ctx.fillRect(0, 0, 100, 40);
+        this.ctx.fillStyle = "#212121";
+        this.ctx.fillText(Math.floor(score), 10 , 30)
     }
 }
 
