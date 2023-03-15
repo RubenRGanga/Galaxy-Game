@@ -114,17 +114,19 @@ const Game = {  undefined,
 
 //COLISIONES ENTRE ENEMIGO Y JUGADOR
 
-    esColision: function(){
+    esColision: function() {
         return this.enemigos.some(enemigo => {
-            return (
-                !enemigo.derribado &&
-                this.jugador.y <= enemigo.y + enemigo.h*0.75 &&
-                this.jugador.x + this.jugador.w*0.75 >= enemigo.x &&
-                this.jugador.y + this.jugador.h*0.75 >= enemigo.y
-                // && this.jugador.x <= enUno.x + enUno.w
-            )
-        })
-},
+            if (!enemigo.derribado &&
+                this.jugador.y <= enemigo.y + enemigo.h * 0.75 &&
+                this.jugador.x + this.jugador.w * 0.75 >= enemigo.x &&
+                this.jugador.y + this.jugador.h * 0.75 >= enemigo.y) {
+                    
+                enemigo.explotar(this.enemigos);
+                return true;
+            }
+            return false;
+        });
+    },
 
 //COLISIÓN ENTRE DISPARO ENEMIGO Y JUGADOR
 
@@ -136,7 +138,8 @@ const Game = {  undefined,
                     laser.y <= this.jugador.y + this.jugador.h &&
                     laser.x <= this.jugador.x + this.jugador.w - 80 &&
                     laser.x + laser.laserW >= this.jugador.x &&
-                    laser.y + laser.laserH >= this.jugador.y)
+                    laser.y + laser.laserH >= this.jugador.y
+                )
             })
         })
     },
@@ -199,7 +202,7 @@ gameOver: async function(){
         confirmButtonColor: '#7d1282',
         confirmButtonText: 'TRY AGAIN!',
         footer: '<a href="https://drive.google.com/file/d/1rfAMUeZcgVjSpDWC50vTgHxsL39iPaDF/view?usp=share_link" target="_blank">SEE MY CV!</a>',
-        // toast: true
+
     });
     this.reset();
     this.start();
