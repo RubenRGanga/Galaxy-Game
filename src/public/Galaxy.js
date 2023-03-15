@@ -15,6 +15,7 @@ window.onload = function () {
 
 let reproducir = false;
 let musica = new Audio("assets/snd/DUST.mp3");
+musica.volume = 0.4;
 
 //arranca la música en bucle
 musica.addEventListener('ended', function() {

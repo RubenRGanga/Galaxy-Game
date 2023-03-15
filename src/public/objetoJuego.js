@@ -11,6 +11,8 @@ const Game = {  undefined,
         CONTROL: 17,
     },
 
+    
+
 //METODOS DE INICIO, RESET, STOP, MOVER Y PINTAR
 
     init: function () {
@@ -182,6 +184,9 @@ gameOverWithDelay: function(){
 },
 
 gameOver: async function(){
+    var audio = new Audio("assets/snd/gameover.wav");
+    audio.volume = 0.3;
+    audio.play();
     this.stop();
     const points = Math.floor(this.sumarFrames/60 + this.score*100);
     await Swal.fire({
