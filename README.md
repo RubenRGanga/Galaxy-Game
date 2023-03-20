@@ -1,4 +1,4 @@
-# <a href="https://galaxy-game.pages.dev/">Galaxy - Game</a>
+# <a href="https://galaxy-game.pages.dev/">![Galaxy-Game Banner](https://raw.githubusercontent.com/RubenRGanga/Galaxy-Game/main/src/public/assets/img/banner_github.png)</a>
 
 <b>- SPANISH -</b><br><br>
 Galaxy fue creado por <b>Rubén R. Ganga</b> como un proyecto de clase para aplicar lo aprendido en lógica de programación utilizando <b>JavaScript Vanilla</b>
