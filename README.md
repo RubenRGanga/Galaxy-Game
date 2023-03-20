@@ -1,10 +1,10 @@
-# Galaxy-Game
+# <a href="https://galaxy-game.pages.dev/">Galaxy - Game</a>
 
 <b>- SPANISH -</b><br><br>
 Galaxy fue creado por <b>Rubén R. Ganga</b> como un proyecto de clase para aplicar lo aprendido en lógica de programación utilizando <b>JavaScript Vanilla</b>
  y <b>CANVAS</b>, con un fuerte componente de programación orientada a objetos (<b>POO</b>).
 
-Para probarlo puedes ir a  <a href="https://galaxy-game.pages.dev/">Galaxy - Game</a> o puedes descargar el repositorio y ejecutar el enlace Galaxy - Game.
+Para probarlo puedes ir a  <a href="https://galaxy-game.pages.dev/">Galaxy - Game</a> o puedes descargar el repositorio y ejecutar el enlace Galaxy - Game. Tambien puedes ver un video-demo <a href="https://youtu.be/0pwn1ZHeAvI">aquí</a>.
 
 Galaxy es un juego homenaje a Galaxy Game, el primer juego de recreativas de la historia en 1971 programado por Bill Pitts y Hugh Tuck.
 
@@ -17,12 +17,11 @@ ________________________________________________________________________________
 <b>- ENGLISH -</b><br><br>
 Galaxy was created by Rubén R. Ganga as a class project to apply what was learned in programming logic using Vanilla JavaScript and CANVAS, with a strong component of object-oriented programming (OOP).
 
-To try it out, you can go to <a href="https://galaxy-game.pages.dev/">Galaxy - Game</a> or you can download the repository and run the Galaxy - Game link.
+To try it out, you can go to <a href="https://galaxy-game.pages.dev/">Galaxy - Game</a> or you can download the repository and run the Galaxy - Game link. 
+You can also see a video-demo <a href="https://youtu.be/0pwn1ZHeAvI">here</a>.
 
 Galaxy is a tribute game to Galaxy Game, the first arcade game in history in 1971 programmed by Bill Pitts and Hugh Tuck.
 
 Some of the graphic resources, such as the ships and explosions, were designed by myself in Gimp, based on free-use pixel art in some cases or created from scratch in others. The background is the work of artist Luis Zuno, but was modified and animated by myself to obtain the parallax effect. The music is "DUST" by M.O.O.N. and the sounds were downloaded from free-use sources.
 
-The purpose of this project is simply to showcase my abilities with Vanilla JavaScript, Canvas, and object-oriented programming
-
-[![Alt text](https://img.youtube.com/vi/0pwn1ZHeAvI/0.jpg)](https://www.youtube.com/watch?v=0pwn1ZHeAvI)
+The purpose of this project is simply to showcase my abilities with Vanilla JavaScript, Canvas, and object-oriented programming.
