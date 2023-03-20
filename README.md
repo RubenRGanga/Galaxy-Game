@@ -24,3 +24,5 @@ Galaxy is a tribute game to Galaxy Game, the first arcade game in history in 197
 Some of the graphic resources, such as the ships and explosions, were designed by myself in Gimp, based on free-use pixel art in some cases or created from scratch in others. The background is the work of artist Luis Zuno, but was modified and animated by myself to obtain the parallax effect. The music is "DUST" by M.O.O.N. and the sounds were downloaded from free-use sources.
 
 The purpose of this project is simply to showcase my abilities with Vanilla JavaScript, Canvas, and object-oriented programming
+
+[![Alt text](https://img.youtube.com/vi/0pwn1ZHeAvI/0.jpg)](https://www.youtube.com/watch?v=0pwn1ZHeAvI)
