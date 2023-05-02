@@ -39,7 +39,13 @@ const Game = {  undefined,
             }
 
             if (this.sumarFrames % 120 === 0) {
-                this.generaEnemigo("Mina")
+                if (this.sumarFrames % 240 === 0) {
+                    // Cuando sumarFrames es múltiplo de 240, genera una mina en una posición vertical aleatoria.
+                    this.generaEnemigo("Mina")
+                } else {
+                    // Cuando sumarFrames es múltiplo de 120 pero no de 240, genera una mina en la posición vertical del jugador.
+                    this.generaEnemigo("Mina", this.jugador.y)
+                }
             }
 
             this.moverTodo(); 

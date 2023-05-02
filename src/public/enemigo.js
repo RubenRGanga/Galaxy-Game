@@ -3,7 +3,7 @@ const randomInt = (min, max)  => Math.floor(Math.random() * (max - min) + min);
 //SUPER CLASE ENEMIGO
 
 class Enemigo {
-    constructor(canvasW, y, w, h, img, ctx) {
+    constructor(canvasW, y, w, h, img, ctx, jugadorY = undefined) {
         this.ctx = ctx;
         
         this.img = img
@@ -12,7 +12,7 @@ class Enemigo {
         this.h = h
 
         this.x = canvasW
-        this.y = y
+        this.y = jugadorY !== undefined ? jugadorY : y;
         this.derribado = false;
 
         this.sonidoExplosion = new Audio('assets/snd/blast.wav');
@@ -92,7 +92,7 @@ class Enemigo {
 // ENEMIGO > NAVE
 
 class Nave extends Enemigo {
-    constructor(canvasW, canvasH, tipo, crop, ctx) {
+    constructor(canvasW, canvasH, tipo, crop, ctx, jugadorY = undefined) {
         const w = 150;
         const h = 45;
 
@@ -103,7 +103,7 @@ class Nave extends Enemigo {
         img.frames = 3
         img.frameIndex = 0
 
-        super(canvasW, y, w, h, img, ctx)
+        super(canvasW, y, w, h, img, ctx, jugadorY)
 
         this.bullets = []
 
@@ -193,7 +193,7 @@ class NaveSupersonica extends Nave {
 // ENEMIGO > PROYECTIL
 
 class Proyectil extends Enemigo {
-    constructor(canvasW, canvasH, tipo, crop, ctx) {
+    constructor(canvasW, canvasH, tipo, crop, ctx, jugadorY = undefined) {
         const w = 35;
         const h = 35;
 
@@ -204,7 +204,7 @@ class Proyectil extends Enemigo {
         img.frames = 4
         img.frameIndex = 0
 
-        super(canvasW, y, w, h, img, ctx)
+        super(canvasW, y, w, h, img, ctx, jugadorY)
        
     }
 
@@ -212,11 +212,11 @@ class Proyectil extends Enemigo {
 
 // ENEMIGO > PROYECTIL > MINA
 class Mina extends Proyectil {
-    constructor(canvasW, canvasH, ctx) {
+    constructor(canvasW, canvasH, ctx, jugadorY = undefined) {
         const tipo = 3;
         const crop = canvasH * .1;
 
-        super(canvasW, canvasH, tipo, crop, ctx)
+        super(canvasW, canvasH, tipo, crop, ctx, jugadorY)
         super.setDX(13)
 
         this.amplitud = 5; // Amplitud del movimiento senoidal
