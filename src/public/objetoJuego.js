@@ -198,7 +198,7 @@ gameOverWithDelay: function(){
 },
 
 gameOver: async function(){
-    var audio = new Audio("assets/snd/gameover.wav");
+    var audio = new Audio("assets/snd/gameover.mp3");
     audio.volume = 0.3;
     audio.play();
     this.stop();
