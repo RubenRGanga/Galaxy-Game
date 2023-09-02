@@ -34,8 +34,8 @@ class Jugador {
 
         this.bullets = []
 
-        this.sonidoLaser = new Audio('assets/snd/fire.mp3');
-        this.sonidoExplosion = new Audio('assets/snd/blast.mp3');
+        this.sonidoLaser = new Audio('assets/snd/fire.wav');
+        this.sonidoExplosion = new Audio('assets/snd/blast.wav');
     
     }
 
