@@ -15,7 +15,7 @@ class Enemigo {
         this.y = jugadorY !== undefined ? jugadorY : y;
         this.derribado = false;
 
-        this.sonidoExplosion = new Audio('assets/snd/blast.wav');
+        this.sonidoExplosion = new Audio('assets/snd/blast.mp3');
 
     }
 
