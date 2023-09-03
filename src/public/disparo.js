@@ -6,12 +6,15 @@ class Laser {
         this.laserH = 20; //Alto del disparo.
         this.ctx = ctx;
 
-        this.img = new Image();
-        this.img.src = `assets/img/laser/${tipo}.png`; //Skin del disparo.
-
-        this.vel_x = 20; 
-
+        this.img = this.imgDisparo || new Image();
+        // Si el prototipo tiene una imagen, usar eso, si no, crear una nueva imagen.
         
+        if (!this.img.src) {
+            // Si la imagen del prototipo no tiene una fuente, asignar una nueva.
+            this.img.src = `assets/img/laser/${tipo}.png`; //Skin del disparo.
+        }
+
+        this.vel_x = 20;
     }
 
     dibujar() {

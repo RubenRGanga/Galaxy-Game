@@ -15,8 +15,8 @@ class Jugador {
 
         this.derribado = false;
 
-        this.img = new Image();
-        this.img.src = "assets/img/nave.png";
+        // this.img = new Image();
+        // this.img.src = "assets/img/nave.png";
 
         !this.derribado ? this.img.frames = 3 : this.img.frames = 12
         this.img.frameIndex = 0;
@@ -34,8 +34,8 @@ class Jugador {
 
         this.bullets = []
 
-        this.sonidoLaser = new Audio('assets/snd/fire.mp3');
-        this.sonidoExplosion = new Audio('assets/snd/blast.mp3');
+        // this.sonidoLaser = new Audio('assets/snd/fire.mp3');
+        // this.sonidoExplosion = new Audio('assets/snd/blast.mp3');
     
     }
 
@@ -126,6 +126,7 @@ class Jugador {
             )
 
             this.bullets.push(bullet)
+            this.sonidoDisparo.play();
         }
 
     //ANIMACIÓN DE LOS SPRITES DEL JUGADOR
@@ -158,9 +159,9 @@ class Jugador {
             if (!this.derribado) {
             this.derribado = true;
             this.sonidoExplosion.play();
+            this.img = this.imgExplosion
             this.img.frames = 12;
             this.img.frameIndex = 0;
-            this.img.src = `assets/img/explosion.png`;
             const self = this;
             function detenerAnimacion() {
                 self.img.frameIndex = self.img.frames - 1;

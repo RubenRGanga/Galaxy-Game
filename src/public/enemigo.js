@@ -6,7 +6,7 @@ class Enemigo {
     constructor(canvasW, y, w, h, img, ctx, jugadorY = undefined) {
         this.ctx = ctx;
         
-        this.img = img
+        // this.img = img
         
         this.w = w
         this.h = h
@@ -15,7 +15,7 @@ class Enemigo {
         this.y = jugadorY !== undefined ? jugadorY : y;
         this.derribado = false;
 
-        this.sonidoExplosion = new Audio('assets/snd/blast.mp3');
+        this.sonidoExplosion = Enemigo.prototype.sonidoExplosion
 
     }
 
@@ -66,11 +66,13 @@ class Enemigo {
         if(!this.derribado) {
             this.arrEnemigos = arrEnemigos;
             this.derribado = true;
-            this.sonidoExplosion.play();
+            this.constructor.prototype.sonidoExplosion.play()
+
+            
+            this.img = this.constructor.prototype.imgExplosion
             this.img.frames = 12 //Frames animación explosión.
             this.img.frameIndex = 0 //En que frame empieza la animación.
             
-            this.img.src = `assets/img/explosion.png`
 
              // Guardar una referencia al objeto `this` en una variable
             const self = this;
@@ -95,11 +97,13 @@ class Nave extends Enemigo {
     constructor(canvasW, canvasH, tipo, crop, ctx, jugadorY = undefined) {
         const w = 150;
         const h = 45;
-
         const y = randomInt(0 + crop, canvasH - h - crop)
-        const img = new Image();
 
-        img.src = `assets/img/enemigo${tipo}.png`
+        const img = Nave.prototype.img
+
+        // const img = new Image();
+
+        // img.src = `assets/img/enemigo${tipo}.png`
         img.frames = 3
         img.frameIndex = 0
 
@@ -107,7 +111,7 @@ class Nave extends Enemigo {
 
         this.bullets = []
 
-        this.sonidoLaserEnemigo = new Audio('assets/snd/laserEnemigo.wav');
+        this.sonidoDisparoEnemigo = Nave.prototype.sonidoDisparoEnemigo
        
     }
 
@@ -127,14 +131,16 @@ class NaveMetralla extends Nave {
     dispara (sumarFrames) {
         if(!this.derribado && sumarFrames % 90 === 0) { //Cadencia de disparo enemigo.
             
-            this.sonidoLaserEnemigo.play();
+            this.constructor.prototype.sonidoDisparoEnemigo.play()
             
             const bullet = new Laser(
                 this.x,
                 this.y + this.h / 2,
                 this.ctx,
                 randomInt(-10, -1),
-                "1" + randomInt(1, 9) //Skin del disparo enemigo.
+                this.constructor.prototype.imgDisparoEnemigo
+                // "13" //Skin del disparo. 
+                //"1" + randomInt(1, 9) //Skin del disparo enemigo.
                 )
 
             bullet.vel_x = -10; //Velocidad del disparo enemigo.
@@ -166,14 +172,16 @@ class NaveSupersonica extends Nave {
     dispara (sumarFrames) {
         if(!this.derribado && sumarFrames % 125 === 0) { //Cadencia de disparo enemigo.
             
-            this.sonidoLaserEnemigo.play();
+            this.constructor.prototype.sonidoDisparoEnemigo.play();
             
             const bullet = new Laser(
                 this.x,
                 this.y + this.h / 2,
                 this.ctx,
                 randomInt(-10, -1),
-                "1" + randomInt(1, 9) //Skin del disparo enemigo.
+                this.constructor.prototype.imgDisparoEnemigo // Usar la imagen de disparo asignada al prototipo
+                //"16" //Skin del disparo
+                //"1" + randomInt(1, 9) //Skin del disparo enemigo.
                 )
 
             bullet.vel_x = -16; //Velocidad del disparo enemigo.
@@ -196,15 +204,15 @@ class Proyectil extends Enemigo {
     constructor(canvasW, canvasH, tipo, crop, ctx, jugadorY = undefined) {
         const w = 35;
         const h = 35;
-
         const y = randomInt(0 + crop, canvasH - h - crop)
-        const img = new Image();
 
-        img.src = `assets/img/mina.png`
+        //const img = new Image();
+        //img.src = `assets/img/mina.png`
+
         img.frames = 4
         img.frameIndex = 0
 
-        super(canvasW, y, w, h, img, ctx, jugadorY)
+        super(canvasW, y, w, h, this.constructor.prototype.img, ctx, jugadorY)
        
     }
 

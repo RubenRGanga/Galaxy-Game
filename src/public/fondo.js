@@ -4,8 +4,8 @@ class Fondo{ //background
         this.h = h;
         this.ctx = ctx;
         //Instancia una nueva imagen y establece la imagen con .src .
-        this.img = new Image(); 
-        this.img.src = "assets/img/parallax-mountain-bg.png"
+        // this.img = new Image(); 
+        // this.img.src = Fondo.imgFondo
         this.x = 0 //situa la imagen en el eje X e Y
         this.y = 0
         

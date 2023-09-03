@@ -1,3 +1,5 @@
+import { imgGameOverDataUrl, audioGameOver } from './Galaxy.js';
+
 const Game = {  undefined,
 
 //PROPIEDADES DEL OBJETO
@@ -198,9 +200,9 @@ gameOverWithDelay: function(){
 },
 
 gameOver: async function(){
-    var audio = new Audio("assets/snd/gameover.mp3");
-    audio.volume = 0.3;
-    audio.play();
+    // var audio = new Audio("assets/snd/gameover.mp3");
+    // audio.volume = 0.3;
+    audioGameOver.play();
     this.stop();
     const points = Math.floor(this.sumarFrames/60 + this.score*100);
     await Swal.fire({
@@ -208,7 +210,8 @@ gameOver: async function(){
         allowEnterKey: true,
         background: '#212121',
         backdrop: false,
-        imageUrl: 'assets/img/gameover.png',
+        imageUrl: imgGameOverDataUrl,
+        imageAlt: 'Game Over',
         html: `Your score is ${points} points.`,
         confirmButtonColor: '#7d1282',
         confirmButtonText: 'TRY AGAIN!',
